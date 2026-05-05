@@ -3,19 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formulaire d'Encaissement — GLASSEM SA</title>
+<title>Formulaire d'Encaissement VAT — GLASSEM SA</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Segoe UI', system-ui, sans-serif;
-    background: #f0f4f8;
-    min-height: 100vh;
+    background: #f0f4f8; min-height: 100vh;
     display: flex; flex-direction: column; align-items: center;
-    padding: 32px 16px 64px;
-    color: #1a2332;
+    padding: 32px 16px 64px; color: #1a2332;
   }
-
-  /* ── Header ── */
   .header { width: 100%; max-width: 660px; text-align: center; margin-bottom: 32px; }
   .logo-bar {
     display: inline-flex; align-items: center; gap: 10px;
@@ -26,68 +22,46 @@
   .logo-bar .dot { width: 7px; height: 7px; background: #38d9a9; border-radius: 50%; }
   h1 { font-size: 24px; font-weight: 700; color: #0a2540; margin-bottom: 4px; }
   .subtitle { font-size: 13px; color: #6b7a8d; }
-
-  /* ── Card ── */
   .card {
     background: #fff; border-radius: 16px;
     box-shadow: 0 2px 20px rgba(10,37,64,.09), 0 0 0 1px rgba(10,37,64,.05);
     padding: 36px 40px; width: 100%; max-width: 660px;
   }
-
-  /* ── Data bar ── */
   .data-bar {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 12px; color: #6b7a8d; margin-bottom: 28px;
-    padding: 9px 13px; background: #f7fafc;
+    display: flex; align-items: center; gap: 8px; font-size: 12px; color: #6b7a8d;
+    margin-bottom: 28px; padding: 9px 13px; background: #f7fafc;
     border-radius: 8px; border: 1px solid #e2e8f0;
   }
   .data-bar .dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e0; flex-shrink: 0; }
   .data-bar.ok  .dot { background: #38d9a9; }
   .data-bar.err .dot { background: #fc8181; }
   .data-bar.loading .dot { background: #f6ad55; animation: pulse 1s ease-in-out infinite; }
-
-  /* ── Section labels ── */
   .section-label {
-    font-size: 10px; font-weight: 800; letter-spacing: .1em;
-    text-transform: uppercase; color: #a0aec0;
-    border-bottom: 1px solid #edf2f7; padding-bottom: 6px; margin-bottom: 18px;
+    font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    color: #a0aec0; border-bottom: 1px solid #edf2f7; padding-bottom: 6px; margin-bottom: 18px;
   }
-
-  /* ── Fields ── */
   .field { margin-bottom: 20px; }
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
   label {
-    display: block; font-size: 11px; font-weight: 700;
-    letter-spacing: .07em; text-transform: uppercase;
-    color: #4a5568; margin-bottom: 6px;
+    display: block; font-size: 11px; font-weight: 700; letter-spacing: .07em;
+    text-transform: uppercase; color: #4a5568; margin-bottom: 6px;
   }
   label .req { color: #e53e3e; margin-left: 2px; }
   label .hint { font-weight: 400; font-size: 10px; text-transform: none; letter-spacing: 0; color: #a0aec0; margin-left: 4px; }
-
   input, select {
-    width: 100%; padding: 11px 14px;
-    border: 1.5px solid #d1dbe8; border-radius: 8px;
+    width: 100%; padding: 11px 14px; border: 1.5px solid #d1dbe8; border-radius: 8px;
     font-size: 14px; color: #1a2332; background: #fff;
-    transition: border-color .15s, box-shadow .15s;
-    appearance: none; -webkit-appearance: none;
+    transition: border-color .15s, box-shadow .15s; appearance: none; -webkit-appearance: none;
   }
-  input:focus, select:focus {
-    outline: none; border-color: #0a2540;
-    box-shadow: 0 0 0 3px rgba(10,37,64,.09);
-  }
+  input:focus, select:focus { outline: none; border-color: #0a2540; box-shadow: 0 0 0 3px rgba(10,37,64,.09); }
   input.invalid, select.invalid { border-color: #fc8181 !important; background: #fff5f5; }
-  input.valid   { border-color: #38d9a9 !important; }
+  input.valid { border-color: #38d9a9 !important; }
   input[type="date"] { cursor: pointer; }
+  input[readonly] { background: #f7fafc; color: #6b7a8d; cursor: default; }
 
-  /* Email field spécifique */
   .email-wrap { position: relative; }
-  .email-wrap input { padding-right: 110px; }
-  .email-suffix {
-    position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
-    font-size: 13px; color: #a0aec0; pointer-events: none;
-    font-weight: 500;
-  }
-  .email-wrap input:focus ~ .email-suffix { color: #6b7a8d; }
+  .email-wrap input { padding-right: 130px; }
+  .email-suffix { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 13px; color: #a0aec0; pointer-events: none; font-weight: 500; }
 
   .select-wrap { position: relative; }
   .select-wrap::after {
@@ -96,28 +70,42 @@
     border-right: 5px solid transparent; border-top: 6px solid #6b7a8d; pointer-events: none;
   }
 
-  /* ── Solde box ── */
-  .solde-box {
+  /* ── Frais MoMo panel ── */
+  .momo-panel {
     display: none; margin-top: 10px; padding: 14px 16px;
-    border-radius: 8px; background: #eafaf4;
-    border: 1.5px solid #38d9a9; animation: fadeIn .2s ease;
+    border-radius: 8px; background: #f7fafc; border: 1.5px solid #d1dbe8;
+    animation: fadeIn .2s ease;
   }
+  .momo-panel.visible { display: block; }
+  .momo-question { font-size: 13px; font-weight: 600; color: #1a2332; margin-bottom: 10px; }
+  .toggle-row { display: flex; gap: 10px; }
+  .toggle-btn {
+    flex: 1; padding: 9px; border-radius: 8px; font-size: 13px; font-weight: 600;
+    border: 1.5px solid #d1dbe8; background: #fff; color: #6b7a8d; cursor: pointer; transition: all .15s;
+  }
+  .toggle-btn.selected-oui { background: #eafaf4; border-color: #38d9a9; color: #0d6e4e; }
+  .toggle-btn.selected-non { background: #fff5f5; border-color: #fc8181; color: #9b2335; }
+  .frais-result {
+    display: none; margin-top: 10px; padding: 10px 14px; border-radius: 6px;
+    background: #EAF3DE; border: 1px solid #97C459; font-size: 13px; color: #27500A;
+  }
+  .frais-result.non { background: #f7fafc; border-color: #d1dbe8; color: #6b7a8d; }
+
+  /* ── Solde box ── */
+  .solde-box { display: none; margin-top: 10px; padding: 14px 16px; border-radius: 8px; background: #eafaf4; border: 1.5px solid #38d9a9; animation: fadeIn .2s ease; }
   .solde-box .lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #6b7a8d; margin-bottom: 4px; }
   .solde-box .amt { font-size: 22px; font-weight: 700; color: #0d6e4e; letter-spacing: -.5px; }
-  .solde-box.warn  { background: #fff8e6; border-color: #f6ad55; }
+  .solde-box.warn { background: #fff8e6; border-color: #f6ad55; }
   .solde-box.warn .amt { color: #744210; }
-  .solde-box.grey  { background: #f7fafc; border-color: #cbd5e0; }
+  .solde-box.grey { background: #f7fafc; border-color: #cbd5e0; }
   .solde-box.grey .amt { font-size: 14px; color: #6b7a8d; font-weight: 500; }
 
-  /* ── Divider ── */
   .divider { border: none; border-top: 1.5px solid #edf2f7; margin: 26px 0; }
 
-  /* ── Submit button ── */
   .btn-submit {
-    width: 100%; padding: 14px; background: #0a2540; color: #fff;
-    border: none; border-radius: 8px; font-size: 15px; font-weight: 700;
-    letter-spacing: .02em; cursor: pointer;
-    transition: background .15s, transform .1s; position: relative;
+    width: 100%; padding: 14px; background: #0a2540; color: #fff; border: none;
+    border-radius: 8px; font-size: 15px; font-weight: 700; letter-spacing: .02em;
+    cursor: pointer; transition: background .15s, transform .1s; position: relative;
   }
   .btn-submit:hover:not(:disabled) { background: #0e3460; }
   .btn-submit:active:not(:disabled) { transform: scale(.99); }
@@ -130,29 +118,35 @@
   }
   .btn-submit.busy .spinner { display: block; }
 
-  /* ── Status ── */
-  .status {
-    display: none; margin-top: 16px; padding: 14px 16px;
-    border-radius: 8px; font-size: 14px; font-weight: 500;
-    animation: fadeIn .2s ease; line-height: 1.5;
+  /* ── Success screen ── */
+  .success-screen {
+    display: none; text-align: center; padding: 20px 0 10px;
+    animation: fadeIn .3s ease;
   }
-  .status.ok   { background: #eafaf4; color: #0d6e4e; border: 1.5px solid #38d9a9; }
-  .status.err  { background: #fff5f5; color: #9b2335; border: 1.5px solid #feb2b2; }
-  .status.warn { background: #fff8e6; color: #744210; border: 1.5px solid #f6ad55; }
-  .id-badge {
-    display: inline-block; margin-top: 8px; padding: 4px 10px;
-    background: #0a2540; color: #38d9a9; border-radius: 6px;
-    font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700;
+  .success-icon { font-size: 48px; margin-bottom: 12px; }
+  .success-title { font-size: 17px; font-weight: 700; color: #0d6e4e; margin-bottom: 8px; }
+  .success-msg { font-size: 13px; color: #6b7a8d; line-height: 1.6; margin-bottom: 24px; }
+  .success-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-action {
+    padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    cursor: pointer; border: none; transition: opacity .15s, transform .1s;
   }
+  .btn-action:active { transform: scale(.98); }
+  .btn-nouveau { background: #0a2540; color: #fff; }
+  .btn-nouveau:hover { background: #0e3460; }
+  .btn-fermer { background: #f0f4f8; color: #4a5568; border: 1.5px solid #d1dbe8; }
+  .btn-fermer:hover { background: #e2e8f0; }
+
+  .status { display: none; margin-top: 16px; padding: 14px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; animation: fadeIn .2s ease; line-height: 1.5; }
+  .status.err { background: #fff5f5; color: #9b2335; border: 1.5px solid #feb2b2; }
 
   .footer { margin-top: 24px; font-size: 11px; color: #a0aec0; text-align: center; }
 
   @keyframes spin   { to { transform: translateY(-50%) rotate(360deg); } }
-  @keyframes fadeIn { from { opacity:0; transform:translateY(-3px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
   @keyframes pulse  { 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
-
   @media (max-width: 520px) {
-    .card { padding: 24px 20px; }
+    .card { padding: 24px 18px; }
     .field-row { grid-template-columns: 1fr; gap: 0; }
   }
 </style>
@@ -167,26 +161,23 @@
 
 <div class="card">
 
-  <!-- Statut connexion données -->
   <div class="data-bar loading" id="dataBar">
     <div class="dot"></div>
-    <span id="dataMsg">Chargement des clients depuis base de donnée…</span>
+    <span id="dataMsg">Connexion à la base de données…</span>
   </div>
 
+  <!-- ══ FORMULAIRE ══ -->
   <form id="vatForm" novalidate>
 
-    <!-- ═══ SECTION 1 : IDENTIFICATION ═══ -->
     <div class="section-label">Identification</div>
-
     <div class="field-row">
       <div class="field">
-        <label for="f_caissier">
-          Caissier (email) <span class="req">*</span>
+        <label for="f_caissier">Caissier (email) <span class="req">*</span>
           <span class="hint">@glassem.com uniquement</span>
         </label>
         <div class="email-wrap">
           <input type="text" id="f_caissier" placeholder="prenom.nom"
-                 autocomplete="email" autocapitalize="none" spellcheck="false">
+                 autocomplete="off" autocapitalize="none" spellcheck="false">
           <span class="email-suffix">@glassem.com</span>
         </div>
       </div>
@@ -196,26 +187,21 @@
       </div>
     </div>
 
-    <!-- ═══ SECTION 2 : CLIENT ═══ -->
     <div class="section-label">Client</div>
-
     <div class="field">
       <label for="f_client">Nom du client <span class="req">*</span></label>
       <div class="select-wrap">
         <select id="f_client">
-          <option value="">— Chargement en cours… —</option>
+          <option value="">— Connexion à la base de données… —</option>
         </select>
       </div>
-      <!-- Solde affiché dynamiquement -->
-      <div class="solde-box grey" id="soldeBox">
+      <div class="solde-box grey" id="soldeBox" style="display:none;">
         <div class="lbl">Solde restant dû — cumul des instances ouvertes</div>
         <div class="amt" id="soldeAmt">—</div>
       </div>
     </div>
 
-    <!-- ═══ SECTION 3 : PAIEMENT ═══ -->
     <div class="section-label">Paiement</div>
-
     <div class="field-row">
       <div class="field">
         <label for="f_montant">Montant reçu (FCFA) <span class="req">*</span></label>
@@ -229,73 +215,95 @@
             <option>Espèces</option>
             <option>Virement bancaire</option>
             <option>Chèque</option>
-            <option>Mobile Money</option>
+            <option value="Mobile Money">Mobile Money</option>
             <option>Autre</option>
           </select>
         </div>
       </div>
     </div>
 
-    <div class="field">
-      <label for="f_ref">
-        N° de référence encaissement <span class="req">*</span>
+    <!-- ══ PANEL FRAIS MOMO (affiché uniquement si Mobile Money) ══ -->
+    <div class="momo-panel" id="momoPanel">
+      <div class="momo-question">Les frais de transaction MoMo (0,25%) sont-ils inclus dans le montant reçu ?</div>
+      <div class="toggle-row">
+        <button type="button" class="toggle-btn" id="btnOui" onclick="setFrais(true)">✓ Oui — frais inclus</button>
+        <button type="button" class="toggle-btn" id="btnNon" onclick="setFrais(false)">✗ Non — frais non inclus</button>
+      </div>
+      <div class="frais-result" id="fraisResult"></div>
+    </div>
+
+    <!-- Champ frais caché — rempli automatiquement -->
+    <input type="hidden" id="f_frais" value="0">
+
+    <div class="field" style="margin-top:20px;">
+      <label for="f_ref">N° de référence encaissement <span class="req">*</span>
         <span class="hint">N° chèque, ID MoMo, reçu caisse…</span>
       </label>
       <input type="text" id="f_ref" placeholder="Ex : CHQ-00123 / MOMO-456789">
     </div>
 
     <hr class="divider">
-
     <button type="submit" class="btn-submit" id="submitBtn">
-      Enregistrer dans le journal
+      Enregistrer l'encaissement
       <span class="spinner"></span>
     </button>
-
-    <div class="status" id="statusMsg"></div>
+    <div class="status err" id="statusMsg"></div>
   </form>
+
+  <!-- ══ ÉCRAN DE SUCCÈS (remplace le formulaire après validation) ══ -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✅</div>
+    <div class="success-title">Encaissement enregistré avec succès</div>
+    <div class="success-msg">
+      Votre encaissement a été enregistré avec succès.<br>
+      Transaction en instance de traitement comptable.
+    </div>
+    <div class="success-actions">
+      <button class="btn-action btn-nouveau" onclick="nouveauFormulaire()">
+        + Nouvel encaissement
+      </button>
+      <button class="btn-action btn-fermer" onclick="fermerPage()">
+        Fermer
+      </button>
+    </div>
+  </div>
+
 </div>
 
 <div class="footer">
-  GLASSEM SA · Encaissement VAT ·
+  GLASSEM SA · Formulaire d'Encaissement VAT · Traitement comptable via Make.com
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
 //  CONFIGURATION
 // ══════════════════════════════════════════════════════════════════
-
 const SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbzFYaf6bp14IsTOOsBNNLVDT78s1S-MylJPJ5Aa0cs73b5GMh_UGvSuAn9BRQrLJ0DM/exec";
 const SECRET_TOKEN = "GLASSEM_VAT_EsThgHh3PPMM";
 const DOMAINE      = "@glassem.com";
+const TAUX_MOMO    = 0.0025; // 0,25%
+
+let clientSoldes  = {};
+let fraisInclus   = null; // null = non répondu, true = oui, false = non
 
 // ══════════════════════════════════════════════════════════════════
-//  DONNÉES EN MÉMOIRE
+//  CHARGEMENT CLIENTS DEPUIS LA BASE DE DONNÉES
 // ══════════════════════════════════════════════════════════════════
-
-let clientSoldes = {};
-
-// ══════════════════════════════════════════════════════════════════
-//  CHARGEMENT CLIENTS DEPUIS APPS SCRIPT
-// ══════════════════════════════════════════════════════════════════
-
 async function chargerClients() {
   const bar = document.getElementById('dataBar');
   const msg = document.getElementById('dataMsg');
   const sel = document.getElementById('f_client');
 
   bar.className = 'data-bar loading';
-  msg.textContent = 'Connexion à base de données…';
+  msg.textContent = 'Connexion à la base de données…';
 
   try {
-    if (SCRIPT_URL === "REMPLACER_PAR_VOTRE_URL_APPS_SCRIPT") {
-      throw new Error("URL Apps Script non configurée");
-    }
     const res  = await fetch(`${SCRIPT_URL}?token=${encodeURIComponent(SECRET_TOKEN)}`);
     const json = await res.json();
 
-    if (json.status === 'forbidden') throw new Error("Token de sécurité invalide.");
-    if (json.status === 'error')    throw new Error(json.error || "Erreur serveur.");
-    if (!json.clients?.length)      throw new Error("Aucun client trouvé dans SUIVI_INSTANCES.");
+    if (json.status === 'forbidden') throw new Error("Accès refusé — token invalide.");
+    if (json.status === 'error')     throw new Error(json.error || "Erreur serveur.");
+    if (!json.clients || !json.clients.length) throw new Error("Aucun client trouvé dans la base de données.");
 
     clientSoldes = {};
     json.clients.forEach(c => { clientSoldes[c.nom] = c.solde; });
@@ -304,53 +312,100 @@ async function chargerClients() {
       json.clients.map(c => `<option value="${esc(c.nom)}">${esc(c.nom)}</option>`).join('');
 
     bar.className = 'data-bar ok';
-    msg.textContent = `${json.total} client(s) chargé(s) · Soldes à jour`;
+    msg.textContent = `Base de données connectée · ${json.total} client(s) chargé(s)`;
 
   } catch (err) {
     bar.className = 'data-bar err';
-    msg.innerHTML = `${esc(err.message)} — <a href="#" onclick="chargerClients();return false;" style="color:#9b2335;font-weight:700;">Réessayer</a>`;
-    sel.innerHTML = '<option value="">— Saisir manuellement —</option>';
-    document.querySelector('.select-wrap').innerHTML =
-      `<input type="text" id="f_client" placeholder="Nom du client (liste non disponible)">`;
+    msg.innerHTML = `Erreur de connexion : ${esc(err.message)} &nbsp;—&nbsp; <a href="#" onclick="chargerClients();return false;" style="color:#9b2335;font-weight:700;">Réessayer</a>`;
+    const wrap = document.querySelector('#f_client')?.closest('.select-wrap');
+    if (wrap) wrap.innerHTML = `<input type="text" id="f_client" placeholder="Saisir le nom du client manuellement">`;
+    console.error('[VAT]', err);
   }
 }
 
 // ══════════════════════════════════════════════════════════════════
-//  AFFICHAGE DU SOLDE À LA SÉLECTION
+//  SOLDE CLIENT
 // ══════════════════════════════════════════════════════════════════
-
 document.addEventListener('change', function(e) {
-  if (e.target?.id === 'f_client') afficherSolde(e.target.value);
+  if (e.target && e.target.id === 'f_client') afficherSolde(e.target.value);
+  if (e.target && e.target.id === 'f_mode')   gererModePaiement(e.target.value);
+  if (e.target && e.target.id === 'f_montant') recalculerFrais();
 });
 
 function afficherSolde(client) {
   const box = document.getElementById('soldeBox');
   const amt = document.getElementById('soldeAmt');
   if (!client) { box.style.display = 'none'; return; }
-
   box.style.display = 'block';
   const solde = clientSoldes[client];
   const fmt = v => new Intl.NumberFormat('fr-FR').format(Math.abs(v));
-
   if (solde === undefined) {
-    box.className = 'solde-box grey';
-    amt.textContent = 'Solde non disponible';
+    box.className = 'solde-box grey'; amt.textContent = 'Solde non disponible';
   } else if (solde <= 0) {
     box.className = 'solde-box warn';
     amt.textContent = solde === 0 ? '0 FCFA — Compte soldé' : `Avoir : ${fmt(solde)} FCFA`;
   } else {
-    box.className = 'solde-box';
-    amt.textContent = `${fmt(solde)} FCFA`;
+    box.className = 'solde-box'; amt.textContent = `${fmt(solde)} FCFA`;
   }
 }
 
 // ══════════════════════════════════════════════════════════════════
-//  VALIDATION EMAIL CAISSIER EN TEMPS RÉEL
+//  GESTION FRAIS MOMO
 // ══════════════════════════════════════════════════════════════════
+function gererModePaiement(mode) {
+  const panel = document.getElementById('momoPanel');
+  if (mode === 'Mobile Money') {
+    panel.classList.add('visible');
+    fraisInclus = null;
+    document.getElementById('f_frais').value = 0;
+    document.getElementById('fraisResult').style.display = 'none';
+    document.getElementById('btnOui').className = 'toggle-btn';
+    document.getElementById('btnNon').className = 'toggle-btn';
+  } else {
+    panel.classList.remove('visible');
+    fraisInclus = null;
+    document.getElementById('f_frais').value = 0;
+  }
+}
 
+function setFrais(inclus) {
+  fraisInclus = inclus;
+  const montant = parseFloat(document.getElementById('f_montant').value) || 0;
+  recalculerFrais();
+  document.getElementById('btnOui').className = 'toggle-btn' + (inclus ? ' selected-oui' : '');
+  document.getElementById('btnNon').className = 'toggle-btn' + (!inclus ? ' selected-non' : '');
+}
+
+function recalculerFrais() {
+  if (fraisInclus === null) return;
+  const montant = parseFloat(document.getElementById('f_montant').value) || 0;
+  const fraisEl = document.getElementById('fraisResult');
+  const fmt = v => new Intl.NumberFormat('fr-FR', {minimumFractionDigits:0, maximumFractionDigits:0}).format(v);
+
+  if (fraisInclus) {
+    // Frais inclus dans le montant reçu → frais = montant × 0,25%
+    const frais = Math.round(montant * TAUX_MOMO);
+    document.getElementById('f_frais').value = frais;
+    fraisEl.className = 'frais-result';
+    fraisEl.innerHTML = `Frais MoMo inclus : <strong>${fmt(frais)} FCFA</strong> &nbsp;·&nbsp; Montant net créditeur : <strong>${fmt(montant - frais)} FCFA</strong>`;
+    fraisEl.style.display = 'block';
+  } else {
+    // Frais non inclus → frais = 0 (client ne les a pas payés)
+    document.getElementById('f_frais').value = 0;
+    fraisEl.className = 'frais-result non';
+    fraisEl.innerHTML = `Frais MoMo non inclus — Frais enregistrés : <strong>0 FCFA</strong>`;
+    fraisEl.style.display = 'block';
+  }
+}
+
+// Recalcul en temps réel quand le montant change
+document.getElementById('f_montant').addEventListener('input', recalculerFrais);
+
+// ══════════════════════════════════════════════════════════════════
+//  VALIDATION EMAIL EN TEMPS RÉEL
+// ══════════════════════════════════════════════════════════════════
 document.getElementById('f_caissier').addEventListener('input', function() {
   const val = this.value.trim();
-  // L'utilisateur saisit uniquement la partie avant @glassem.com
   if (val.length > 2 && /^[a-zA-Z0-9._-]+$/.test(val)) {
     this.classList.remove('invalid'); this.classList.add('valid');
   } else {
@@ -361,66 +416,62 @@ document.getElementById('f_caissier').addEventListener('input', function() {
 });
 
 // ══════════════════════════════════════════════════════════════════
-//  SOUMISSION DU FORMULAIRE
+//  SOUMISSION
 // ══════════════════════════════════════════════════════════════════
-
 document.getElementById('vatForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-
   const btn   = document.getElementById('submitBtn');
   const stMsg = document.getElementById('statusMsg');
 
-  // Construire l'email complet du caissier
   const caissierPartie = document.getElementById('f_caissier').value.trim().toLowerCase();
   const emailComplet   = caissierPartie + DOMAINE;
+  const modeReglement  = document.getElementById('f_mode').value;
 
-  // Validation
+  // Validation MoMo : réponse obligatoire sur les frais
+  if (modeReglement === 'Mobile Money' && fraisInclus === null) {
+    showErr('Veuillez indiquer si les frais MoMo sont inclus dans le montant reçu.');
+    return;
+  }
+
   const champs = [
-    { id: 'f_caissier', val: caissierPartie, msg: "L'identifiant du caissier est requis." },
-    { id: 'f_date',     val: document.getElementById('f_date').value, msg: "La date est requise." },
-    { id: 'f_client',   val: document.getElementById('f_client')?.value || '', msg: "Le nom du client est requis." },
-    { id: 'f_montant',  val: document.getElementById('f_montant').value, msg: "Le montant est requis." },
-    { id: 'f_mode',     val: document.getElementById('f_mode').value, msg: "Le mode de règlement est requis." },
-    { id: 'f_ref',      val: document.getElementById('f_ref').value.trim(), msg: "La référence est requise." }
+    { id: 'f_caissier', val: caissierPartie },
+    { id: 'f_date',     val: document.getElementById('f_date').value },
+    { id: 'f_client',   val: (document.getElementById('f_client') || {}).value || '' },
+    { id: 'f_montant',  val: document.getElementById('f_montant').value },
+    { id: 'f_mode',     val: modeReglement },
+    { id: 'f_ref',      val: document.getElementById('f_ref').value.trim() }
   ];
 
-  let erreur = null;
+  let erreur = false;
   champs.forEach(c => {
     const el = document.getElementById(c.id);
-    if (!c.val) { if (el) el.classList.add('invalid'); if (!erreur) erreur = c.msg; }
+    if (!c.val) { if (el) el.classList.add('invalid'); erreur = true; }
     else if (el) el.classList.remove('invalid');
   });
+  if (erreur) { showErr('Veuillez remplir tous les champs obligatoires.'); return; }
 
-  if (erreur) { showStatus('err', erreur); return; }
-
-  // Validation format email
   if (!/^[a-zA-Z0-9._-]+$/.test(caissierPartie)) {
     document.getElementById('f_caissier').classList.add('invalid');
-    showStatus('err', `Format invalide. Saisissez uniquement la partie avant ${DOMAINE} (ex: jean.dupont)`);
+    showErr(`Format invalide. Saisissez uniquement la partie avant ${DOMAINE} (ex: jean.dupont)`);
     return;
   }
 
   const montant = Number(document.getElementById('f_montant').value);
   if (montant <= 0) {
     document.getElementById('f_montant').classList.add('invalid');
-    showStatus('err', "Le montant reçu doit être supérieur à 0 FCFA.");
+    showErr('Le montant reçu doit être supérieur à 0 FCFA.');
     return;
   }
 
-  if (SCRIPT_URL === "REMPLACER_PAR_VOTRE_URL_APPS_SCRIPT") {
-    showStatus('err', "URL Apps Script non configurée.");
-    return;
-  }
-
-  // Payload — Statut_Utilisation et ID sont gérés côté Apps Script
   const payload = {
-    token                : SECRET_TOKEN,
-    Date_Encaissement    : document.getElementById('f_date').value,
-    CAISSIER             : emailComplet,
-    Nom_Client           : document.getElementById('f_client').value,
-    Montant_Recu         : montant,
-    MODE_REGLEMENT       : document.getElementById('f_mode').value,
-    NO_REF_ENCAISSEMENT  : document.getElementById('f_ref').value.trim()
+    token               : SECRET_TOKEN,
+    Date_Encaissement   : document.getElementById('f_date').value,
+    CAISSIER            : emailComplet,
+    Nom_Client          : document.getElementById('f_client').value,
+    Montant_Recu        : montant,
+    MODE_REGLEMENT      : modeReglement,
+    NO_REF_ENCAISSEMENT : document.getElementById('f_ref').value.trim(),
+    Frais_Transaction   : Number(document.getElementById('f_frais').value) || 0
   };
 
   btn.disabled = true;
@@ -428,30 +479,18 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
   stMsg.style.display = 'none';
 
   try {
-    // Note : mode no-cors → on ne peut pas lire la réponse JSON
-    // Pour lire la réponse (et afficher l'ID), utiliser mode cors avec le script configuré en conséquence
     await fetch(SCRIPT_URL, {
-      method : 'POST',
-      mode   : 'no-cors',
+      method : 'POST', mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body   : JSON.stringify(payload)
     });
 
-    // Succès présumé (no-cors ne retourne pas de corps lisible)
-    stMsg.className = 'status ok';
-    stMsg.innerHTML = `
-      ✓ Encaissement enregistré avec succès.<br>
-      <small>Statut : <strong>En attente</strong> — Make.com effectuera l'allocation FIFO et passera le statut à <strong>Affecté</strong>.</small>
-    `;
-    stMsg.style.display = 'block';
-
-    this.reset();
-    document.getElementById('soldeBox').style.display = 'none';
-    document.getElementById('f_caissier').classList.remove('valid');
-    document.getElementById('f_date').valueAsDate = new Date(); // remettre la date du jour
+    // Afficher l'écran de succès
+    document.getElementById('vatForm').style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
 
   } catch (err) {
-    showStatus('err', `Erreur d'envoi : ${err.message}`);
+    showErr(`Erreur d'envoi : ${err.message}`);
   } finally {
     btn.disabled = false;
     btn.classList.remove('busy');
@@ -459,12 +498,45 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
 });
 
 // ══════════════════════════════════════════════════════════════════
+//  ACTIONS POST-VALIDATION
+// ══════════════════════════════════════════════════════════════════
+function nouveauFormulaire() {
+  // Réinitialiser le formulaire
+  document.getElementById('vatForm').reset();
+  document.getElementById('soldeBox').style.display = 'none';
+  document.getElementById('momoPanel').classList.remove('visible');
+  document.getElementById('fraisResult').style.display = 'none';
+  document.getElementById('f_frais').value = 0;
+  document.getElementById('f_caissier').classList.remove('valid', 'invalid');
+  document.getElementById('statusMsg').style.display = 'none';
+  document.getElementById('btnOui').className = 'toggle-btn';
+  document.getElementById('btnNon').className = 'toggle-btn';
+  fraisInclus = null;
+  document.getElementById('f_date').valueAsDate = new Date();
+
+  // Afficher le formulaire, cacher l'écran succès
+  document.getElementById('successScreen').style.display = 'none';
+  document.getElementById('vatForm').style.display = 'block';
+}
+
+function fermerPage() {
+  // Tenter de fermer l'onglet (fonctionne si ouvert via un lien)
+  window.close();
+  // Si le navigateur bloque window.close(), afficher un message
+  setTimeout(() => {
+    document.getElementById('successScreen').innerHTML += `
+      <p style="margin-top:16px;font-size:12px;color:#a0aec0;">
+        Vous pouvez fermer cet onglet manuellement.
+      </p>`;
+  }, 300);
+}
+
+// ══════════════════════════════════════════════════════════════════
 //  UTILITAIRES
 // ══════════════════════════════════════════════════════════════════
-
-function showStatus(type, html) {
+function showErr(html) {
   const el = document.getElementById('statusMsg');
-  el.className = `status ${type}`;
+  el.className = 'status err';
   el.innerHTML = html;
   el.style.display = 'block';
 }
@@ -473,11 +545,9 @@ function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// ── Init ──
+// Init
 chargerClients();
-// Pré-remplir la date du jour
 document.getElementById('f_date').valueAsDate = new Date();
 </script>
-
 </body>
 </html>
