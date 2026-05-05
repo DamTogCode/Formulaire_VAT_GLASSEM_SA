@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Journal d'Encaissement — GLASSEM SA</title>
+<title>Formulaire d'Encaissement — GLASSEM SA</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -161,7 +161,7 @@
 
 <div class="header">
   <div class="logo-bar"><span class="dot"></span>GLASSEM SA<span class="dot"></span></div>
-  <h1>Journal d'Encaissement VAT</h1>
+  <h1>Formulaire d'Encaissement VAT</h1>
   <p class="subtitle">Saisie des paiements reçus</p>
 </div>
 
@@ -170,7 +170,7 @@
   <!-- Statut connexion données -->
   <div class="data-bar loading" id="dataBar">
     <div class="dot"></div>
-    <span id="dataMsg">Chargement des clients depuis Google Drive…</span>
+    <span id="dataMsg">Chargement des clients depuis base de donnée…</span>
   </div>
 
   <form id="vatForm" novalidate>
@@ -264,8 +264,8 @@
 //  CONFIGURATION
 // ══════════════════════════════════════════════════════════════════
 
-const SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbw-Y9XDdjRlyj9qHvw6hIGnLhitQujCY88Di2aWidoxz7h8GTCVLkHn17i6WEV3p7qt/exec";
-const SECRET_TOKEN = "GLASSEM_VAT_2025_SECRET";
+const SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbzFYaf6bp14IsTOOsBNNLVDT78s1S-MylJPJ5Aa0cs73b5GMh_UGvSuAn9BRQrLJ0DM/exec";
+const SECRET_TOKEN = "GLASSEM_VAT_EsThgHh3PPMM";
 const DOMAINE      = "@glassem.com";
 
 // ══════════════════════════════════════════════════════════════════
@@ -288,7 +288,7 @@ async function chargerClients() {
 
   try {
     if (SCRIPT_URL === "REMPLACER_PAR_VOTRE_URL_APPS_SCRIPT") {
-      throw new Error("URL Apps Script non configurée — voir le guide d'installation.");
+      throw new Error("URL Apps Script non configurée");
     }
     const res  = await fetch(`${SCRIPT_URL}?token=${encodeURIComponent(SECRET_TOKEN)}`);
     const json = await res.json();
@@ -407,7 +407,7 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
     return;
   }
 
-  if (SCRIPT_URL === "https://script.google.com/macros/s/AKfycbw-Y9XDdjRlyj9qHvw6hIGnLhitQujCY88Di2aWidoxz7h8GTCVLkHn17i6WEV3p7qt/exec") {
+  if (SCRIPT_URL === "REMPLACER_PAR_VOTRE_URL_APPS_SCRIPT") {
     showStatus('err', "URL Apps Script non configurée.");
     return;
   }
