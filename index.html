@@ -281,22 +281,25 @@
 const SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbzjed9KipfKqPYF8dj2qf_KzNhStB4owmyWC1WPeNFjSTS3F8-2Rd9Zb3vYF8DtVA2d/exec";
 const SECRET_TOKEN = "GLASSEM_VAT_EsThgHh3PPMM";
 const DOMAINE      = "@glassem.com";
-const TAUX_MOMO    = 0.002; // 0,25%
 const TAUX_MOMO    = 0.0025; // 0,25%
 
 let clientSoldes  = {};
 let fraisInclus   = null; // null = non répondu, true = oui, false = non
 
+
 // ══════════════════════════════════════════════════════════════════
 //  CHARGEMENT CLIENTS DEPUIS LA BASE DE DONNÉES
 // ══════════════════════════════════════════════════════════════════
+
 async function chargerClients() {
+
   const bar = document.getElementById('dataBar');
   const msg = document.getElementById('dataMsg');
   const sel = document.getElementById('f_client');
 
   bar.className = 'data-bar loading';
   msg.textContent = 'Connexion à la base de données…';
+
 
   try {
     const res  = await fetch(`${SCRIPT_URL}?token=${encodeURIComponent(SECRET_TOKEN)}`);
@@ -305,6 +308,8 @@ async function chargerClients() {
     if (json.status === 'forbidden') throw new Error("Accès refusé — token invalide.");
     if (json.status === 'error')     throw new Error(json.error || "Erreur serveur.");
     if (!json.clients || !json.clients.length) throw new Error("Aucun client trouvé dans la base de données.");
+
+
 
     clientSoldes = {};
     json.clients.forEach(c => { clientSoldes[c.nom] = c.solde; });
