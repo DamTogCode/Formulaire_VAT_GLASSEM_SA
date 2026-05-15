@@ -281,64 +281,22 @@
 const SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbzjed9KipfKqPYF8dj2qf_KzNhStB4owmyWC1WPeNFjSTS3F8-2Rd9Zb3vYF8DtVA2d/exec";
 const SECRET_TOKEN = "GLASSEM_VAT_EsThgHh3PPMM";
 const DOMAINE      = "@glassem.com";
+const TAUX_MOMO    = 0.002; // 0,25%
 const TAUX_MOMO    = 0.0025; // 0,25%
 
 let clientSoldes  = {};
 let fraisInclus   = null; // null = non répondu, true = oui, false = non
 
-// ── Protection par mot de passe ────────────────────────────────
-
-const MOT_DE_PASSE_HASH = "aebe9e935e397f7e80edf7b13d0b7eb6c4125a6899b6fc50bd680eec1163d4a1";
-
-
-async function verifierMotDePasse() {
-  const saisie = prompt(
-    "GLASSEM SA — Formulaire VAT\n\n" +
-    "Saisissez votre code d'accès :"
-  );
-
-  if (!saisie) {
-    document.body.innerHTML = "<p style='padding:40px;font-family:Arial'>Accès refusé.</p>";
-    return false;
-  }
-
-  // Calculer le hash de ce qui a été saisi
-  const encoder = new TextEncoder();
-  const data    = encoder.encode(saisie);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  const hashArray  = Array.from(new Uint8Array(hashBuffer));
-  const hashHex    = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-
-  if (hashHex !== MOT_DE_PASSE_HASH) {
-    document.body.innerHTML = "<p style='padding:40px;font-family:Arial'>Code incorrect. Contactez l'administrateur.</p>";
-    return false;
-  }
-  return true;
-}
-
-
 // ══════════════════════════════════════════════════════════════════
 //  CHARGEMENT CLIENTS DEPUIS LA BASE DE DONNÉES
 // ══════════════════════════════════════════════════════════════════
-// Appeler au chargement
-(async () => {
-  const ok = await verifierMotDePasse();
-  if (ok) {
-    await chargerClients(); // initialisation normale
-    document.getElementById("f_date").valueAsDate = new Date();
-  }
-})();
-
-
 async function chargerClients() {
-
   const bar = document.getElementById('dataBar');
   const msg = document.getElementById('dataMsg');
   const sel = document.getElementById('f_client');
 
   bar.className = 'data-bar loading';
   msg.textContent = 'Connexion à la base de données…';
-
 
   try {
     const res  = await fetch(`${SCRIPT_URL}?token=${encodeURIComponent(SECRET_TOKEN)}`);
@@ -347,8 +305,6 @@ async function chargerClients() {
     if (json.status === 'forbidden') throw new Error("Accès refusé — token invalide.");
     if (json.status === 'error')     throw new Error(json.error || "Erreur serveur.");
     if (!json.clients || !json.clients.length) throw new Error("Aucun client trouvé dans la base de données.");
-
-
 
     clientSoldes = {};
     json.clients.forEach(c => { clientSoldes[c.nom] = c.solde; });
