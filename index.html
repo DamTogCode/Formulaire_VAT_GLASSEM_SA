@@ -347,7 +347,7 @@ async function chargerClients() {
     if (json.status === 'forbidden') throw new Error("Accès refusé — token invalide.");
     if (json.status === 'error')     throw new Error(json.error || "Erreur serveur.");
     if (!json.clients || !json.clients.length) throw new Error("Aucun client trouvé dans la base de données.");
-    if (hashHex !== MOT_DE_PASSE_HASH) throw new Error("Alerte Intégrité : Session non autorisée.");
+
 
 
     clientSoldes = {};
