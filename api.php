@@ -16,10 +16,8 @@ header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: SAMEORIGIN');
 
 // ── Charger la config hors webroot ───────────────────────────────
-// Adaptez ce chemin à votre hébergement :
-//   cPanel  → '/home/VOTRE_USER/secrets/config.php'
-//   VPS     → '/var/secrets/glassem/config.php'
-$configPath = dirname(__DIR__) . '/secrets/config.php';
+
+$configPath = dirname(__DIR__) . '/Parametre_VAT_GLASSEM/config.php';
 
 if (!file_exists($configPath)) {
     error_log('[GLASSEM] api.php : config.php introuvable à ' . $configPath);
