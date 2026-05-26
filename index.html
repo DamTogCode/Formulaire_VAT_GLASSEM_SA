@@ -164,7 +164,6 @@
     <span id="dataMsg">Connexion à la base de données…</span>
   </div>
 
-  <!-- ══ FORMULAIRE ══ -->
   <form id="vatForm" novalidate>
 
     <div class="section-label">Identification</div>
@@ -222,14 +221,12 @@
       </div>
     </div>
 
-    <!-- Panel MoMo -->
     <div class="momo-panel" id="momoPanel">
       <div class="momo-question">Les frais de transaction MoMo (0,25%) sont-ils inclus dans le montant déposé ?</div>
       <div class="toggle-row">
         <button type="button" class="toggle-btn" id="btnOui" onclick="setFrais(true)">✓ Oui — frais inclus</button>
         <button type="button" class="toggle-btn" id="btnNon" onclick="setFrais(false)">✗ Non — frais non inclus</button>
       </div>
-      <!-- Récapitulatif dynamique -->
       <div class="momo-recap" id="momoRecap" style="display:none;">
         <div class="momo-recap-row">
           <span class="lbl">Total déposé (Total_Transaction)</span>
@@ -265,7 +262,6 @@
     <div class="status" id="statusMsg"></div>
   </form>
 
-  <!-- ══ ÉCRAN SUCCÈS ══ -->
   <div class="success-screen" id="successScreen">
     <div class="success-icon">✅</div>
     <div class="success-title">Encaissement enregistré avec succès</div>
@@ -273,7 +269,6 @@
       Votre encaissement a été enregistré avec succès.<br>
       Transaction en instance de traitement comptable.
     </div>
-    <!-- Récap montants affiché uniquement si MoMo -->
     <div class="success-recap" id="successRecap" style="display:none;">
       <div class="success-recap-row">
         <span class="lbl">Total déposé</span>
@@ -304,8 +299,8 @@
 // ══════════════════════════════════════════════════════════════════
 //  CONFIGURATION
 // ══════════════════════════════════════════════════════════════════
-const SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbw-Y9XDdjRlyj9qHvw6hIGnLhitQujCY88Di2aWidoxz7h8GTCVLkHn17i6WEV3p7qt/exec";
-const SECRET_TOKEN = "GLASSEM_VAT_2025_SECRET";
+const SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbzjed9KipfKqPYF8dj2qf_KzNhStB4owmyWC1WPeNFjSTS3F8-2Rd9Zb3vYF8DtVA2d/exec";
+const SECRET_TOKEN = "GLASSEM_VAT_EsThgHh3PPM";
 const DOMAINE      = "@glassem.com";
 const TAUX_MOMO    = 0.0025;
 
@@ -404,12 +399,11 @@ function recalculerMomo() {
   let frais, net;
 
   if (fraisInclus) {
-    // Total inclut les frais → frais = total × 0,25% / (1 + 0,25%) ≈ total × 0,25%
-    // Pour simplifier et rester conservateur : frais = total × 0,25%
-    frais = Math.round(total * TAUX_MOMO);
+    // Calcul financier exact : les frais sont rétro-calculés depuis la masse totale reçue
+    frais = Math.round(total * (TAUX_MOMO / (1 + TAX_MOMO || 1.0025)));
     net   = total - frais;
   } else {
-    // Client n'a pas payé les frais → frais = 0 pour GLASSEM, net = total
+    // Les frais ne sont pas pris en compte dans le dépôt : le montant reçu correspond à 100% au montant net
     frais = 0;
     net   = total;
   }
@@ -459,7 +453,7 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
   // Validation champs
   const champs = [
     { id:'f_caissier', val:caissierPartie },
-    { id:'f_date',     val:document.getElementById('f_date').value },
+    { id:'f_date',      val:document.getElementById('f_date').value },
     { id:'f_client',   val:(document.getElementById('f_client')||{}).value||'' },
     { id:'f_montant',  val:document.getElementById('f_montant').value },
     { id:'f_mode',     val:mode },
@@ -490,20 +484,23 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
   const frais = Number(document.getElementById('f_frais').value) || 0;
   const net   = mode === 'Mobile Money'
     ? Number(document.getElementById('f_net').value) || (total - frais)
-    : total; // pas MoMo → net = total
+    : total; 
 
   const ref = document.getElementById('f_ref').value.trim();
 
+  // Objet Payload respectant l'ordre exact de vos colonnes cibles :
+  // ID_ENCAISSEMENT | Date_Encaissement | CAISSIER | Nom_Client | Versement_NetDeFrais | MODE_REGLEMENT | NO_REF_ENCAISSEMENT | Statut_Utilisation | Frais_Momo | Total_Transaction
   const payload = {
     token                : SECRET_TOKEN,
     Date_Encaissement    : document.getElementById('f_date').value,
     CAISSIER             : caissierPartie + DOMAINE,
     Nom_Client           : document.getElementById('f_client').value,
-    Total_Transaction    : total,           // montant total déposé
-    Frais_Momo           : frais,           // frais MoMo (0 si pas MoMo ou non inclus)
-    Versement_NetDeFrais : net,             // montant net crédité client (base FIFO)
+    Versement_NetDeFrais : net,   // Montant net crédité au client
     MODE_REGLEMENT       : mode,
-    NO_REF_ENCAISSEMENT  : ref
+    NO_REF_ENCAISSEMENT  : ref,
+    Statut_Utilisation   : "En attente", // Valeur par défaut initiale
+    Frais_Momo           : frais, // 0 si pas MoMo ou non inclus
+    Total_Transaction    : total  // Masse totale brute de la transaction
   };
 
   btn.disabled = true;
@@ -511,7 +508,6 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
   document.getElementById('statusMsg').style.display = 'none';
 
   try {
-    // On utilise mode cors pour pouvoir lire la réponse (doublon détecté côté serveur)
     let reponseServeur = null;
     try {
       const res = await fetch(SCRIPT_URL, {
@@ -522,7 +518,6 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
       });
       reponseServeur = await res.json();
     } catch {
-      // Si CORS bloque, on retombe en no-cors (succès présumé)
       await fetch(SCRIPT_URL, {
         method : 'POST',
         mode   : 'no-cors',
@@ -532,9 +527,7 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
       reponseServeur = { status: 'ok' };
     }
 
-    // ── Gérer la réponse du serveur ──────────────────────────────
     if (reponseServeur.status === 'doublon') {
-      // Référence déjà existante → message d'erreur explicite
       document.getElementById('f_ref').classList.add('invalid');
       showStatus('doublon',
         `⛔ Transaction non valide — Référence en doublon\n\n` +
@@ -558,7 +551,6 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
     }
 
     // ── Succès ───────────────────────────────────────────────────
-    // Afficher le récap MoMo dans l'écran de succès
     if (mode === 'Mobile Money') {
       document.getElementById('srTotal').textContent = fmt(total);
       document.getElementById('srFrais').textContent = frais > 0 ? `- ${fmt(frais)}` : '0 FCFA (non inclus)';
@@ -619,13 +611,13 @@ function fermerPage() {
 function showStatus(type, text) {
   const el = document.getElementById('statusMsg');
   el.className = `status ${type}`;
-  // Conserver les sauts de ligne dans le message doublon
   el.style.whiteSpace = 'pre-line';
   el.textContent = text;
   el.style.display = 'block';
   el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
+// Nettoyage XSS
 function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
