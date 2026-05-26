@@ -22,11 +22,13 @@
   .logo-bar .dot { width: 7px; height: 7px; background: #38d9a9; border-radius: 50%; }
   h1 { font-size: 24px; font-weight: 700; color: #0a2540; margin-bottom: 4px; }
   .subtitle { font-size: 13px; color: #6b7a8d; }
+
   .card {
     background: #fff; border-radius: 16px;
     box-shadow: 0 2px 20px rgba(10,37,64,.09), 0 0 0 1px rgba(10,37,64,.05);
     padding: 36px 40px; width: 100%; max-width: 660px;
   }
+
   .data-bar {
     display: flex; align-items: center; gap: 8px; font-size: 12px; color: #6b7a8d;
     margin-bottom: 28px; padding: 9px 13px; background: #f7fafc;
@@ -36,6 +38,7 @@
   .data-bar.ok  .dot { background: #38d9a9; }
   .data-bar.err .dot { background: #fc8181; }
   .data-bar.loading .dot { background: #f6ad55; animation: pulse 1s ease-in-out infinite; }
+
   .section-label {
     font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
     color: #a0aec0; border-bottom: 1px solid #edf2f7; padding-bottom: 6px; margin-bottom: 18px;
@@ -48,6 +51,7 @@
   }
   label .req { color: #e53e3e; margin-left: 2px; }
   label .hint { font-weight: 400; font-size: 10px; text-transform: none; letter-spacing: 0; color: #a0aec0; margin-left: 4px; }
+
   input, select {
     width: 100%; padding: 11px 14px; border: 1.5px solid #d1dbe8; border-radius: 8px;
     font-size: 14px; color: #1a2332; background: #fff;
@@ -57,7 +61,7 @@
   input.invalid, select.invalid { border-color: #fc8181 !important; background: #fff5f5; }
   input.valid { border-color: #38d9a9 !important; }
   input[type="date"] { cursor: pointer; }
-  input[readonly] { background: #f7fafc; color: #6b7a8d; cursor: default; }
+  input[readonly] { background: #f7fafc; color: #4a5568; cursor: default; font-weight: 500; }
 
   .email-wrap { position: relative; }
   .email-wrap input { padding-right: 130px; }
@@ -70,28 +74,7 @@
     border-right: 5px solid transparent; border-top: 6px solid #6b7a8d; pointer-events: none;
   }
 
-  /* ── Frais MoMo panel ── */
-  .momo-panel {
-    display: none; margin-top: 10px; padding: 14px 16px;
-    border-radius: 8px; background: #f7fafc; border: 1.5px solid #d1dbe8;
-    animation: fadeIn .2s ease;
-  }
-  .momo-panel.visible { display: block; }
-  .momo-question { font-size: 13px; font-weight: 600; color: #1a2332; margin-bottom: 10px; }
-  .toggle-row { display: flex; gap: 10px; }
-  .toggle-btn {
-    flex: 1; padding: 9px; border-radius: 8px; font-size: 13px; font-weight: 600;
-    border: 1.5px solid #d1dbe8; background: #fff; color: #6b7a8d; cursor: pointer; transition: all .15s;
-  }
-  .toggle-btn.selected-oui { background: #eafaf4; border-color: #38d9a9; color: #0d6e4e; }
-  .toggle-btn.selected-non { background: #fff5f5; border-color: #fc8181; color: #9b2335; }
-  .frais-result {
-    display: none; margin-top: 10px; padding: 10px 14px; border-radius: 6px;
-    background: #EAF3DE; border: 1px solid #97C459; font-size: 13px; color: #27500A;
-  }
-  .frais-result.non { background: #f7fafc; border-color: #d1dbe8; color: #6b7a8d; }
-
-  /* ── Solde box ── */
+  /* Solde box */
   .solde-box { display: none; margin-top: 10px; padding: 14px 16px; border-radius: 8px; background: #eafaf4; border: 1.5px solid #38d9a9; animation: fadeIn .2s ease; }
   .solde-box .lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #6b7a8d; margin-bottom: 4px; }
   .solde-box .amt { font-size: 22px; font-weight: 700; color: #0d6e4e; letter-spacing: -.5px; }
@@ -99,6 +82,25 @@
   .solde-box.warn .amt { color: #744210; }
   .solde-box.grey { background: #f7fafc; border-color: #cbd5e0; }
   .solde-box.grey .amt { font-size: 14px; color: #6b7a8d; font-weight: 500; }
+
+  /* MoMo panel */
+  .momo-panel { display: none; margin-top: 10px; padding: 16px; border-radius: 8px; background: #f7fafc; border: 1.5px solid #d1dbe8; animation: fadeIn .2s ease; }
+  .momo-panel.visible { display: block; }
+  .momo-question { font-size: 13px; font-weight: 600; color: #1a2332; margin-bottom: 10px; }
+  .toggle-row { display: flex; gap: 10px; margin-bottom: 12px; }
+  .toggle-btn { flex: 1; padding: 9px; border-radius: 8px; font-size: 13px; font-weight: 600; border: 1.5px solid #d1dbe8; background: #fff; color: #6b7a8d; cursor: pointer; transition: all .15s; }
+  .toggle-btn.sel-oui { background: #eafaf4; border-color: #38d9a9; color: #0d6e4e; }
+  .toggle-btn.sel-non { background: #fff5f5; border-color: #fc8181; color: #9b2335; }
+
+  /* Récapitulatif MoMo */
+  .momo-recap { background: #fff; border: 1px solid #d1dbe8; border-radius: 8px; overflow: hidden; }
+  .momo-recap-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 14px; border-bottom: 1px solid #edf2f7; font-size: 13px; }
+  .momo-recap-row:last-child { border-bottom: none; }
+  .momo-recap-row .lbl { color: #6b7a8d; }
+  .momo-recap-row .val { font-weight: 600; color: #1a2332; }
+  .momo-recap-row.total { background: #0a2540; }
+  .momo-recap-row.total .lbl { color: #9ecbe8; font-weight: 600; }
+  .momo-recap-row.total .val { color: #38d9a9; font-size: 15px; }
 
   .divider { border: none; border-top: 1.5px solid #edf2f7; margin: 26px 0; }
 
@@ -110,35 +112,31 @@
   .btn-submit:hover:not(:disabled) { background: #0e3460; }
   .btn-submit:active:not(:disabled) { transform: scale(.99); }
   .btn-submit:disabled { background: #a0aec0; cursor: not-allowed; }
-  .spinner {
-    display: none; width: 17px; height: 17px;
-    border: 2px solid rgba(255,255,255,.35); border-top-color: #fff;
-    border-radius: 50%; animation: spin .6s linear infinite;
-    position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
-  }
+  .spinner { display: none; width: 17px; height: 17px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: spin .6s linear infinite; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); }
   .btn-submit.busy .spinner { display: block; }
 
-  /* ── Success screen ── */
-  .success-screen {
-    display: none; text-align: center; padding: 20px 0 10px;
-    animation: fadeIn .3s ease;
-  }
+  /* Status messages */
+  .status { display: none; margin-top: 16px; padding: 14px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; animation: fadeIn .2s ease; line-height: 1.6; }
+  .status.err    { background: #fff5f5; color: #9b2335; border: 1.5px solid #feb2b2; }
+  .status.doublon{ background: #fff8e6; color: #744210; border: 1.5px solid #f6ad55; }
+
+  /* Écran succès */
+  .success-screen { display: none; text-align: center; padding: 20px 0 10px; animation: fadeIn .3s ease; }
   .success-icon { font-size: 48px; margin-bottom: 12px; }
   .success-title { font-size: 17px; font-weight: 700; color: #0d6e4e; margin-bottom: 8px; }
-  .success-msg { font-size: 13px; color: #6b7a8d; line-height: 1.6; margin-bottom: 24px; }
+  .success-msg { font-size: 13px; color: #6b7a8d; line-height: 1.6; margin-bottom: 20px; }
+  /* Récap succès MoMo */
+  .success-recap { background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px 18px; margin: 0 auto 22px; max-width: 400px; text-align: left; }
+  .success-recap-row { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; border-bottom: 1px solid #edf2f7; }
+  .success-recap-row:last-child { border-bottom: none; font-weight: 700; color: #0a2540; }
+  .success-recap-row .lbl { color: #6b7a8d; }
   .success-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn-action {
-    padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 600;
-    cursor: pointer; border: none; transition: opacity .15s, transform .1s;
-  }
+  .btn-action { padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: opacity .15s, transform .1s; }
   .btn-action:active { transform: scale(.98); }
   .btn-nouveau { background: #0a2540; color: #fff; }
   .btn-nouveau:hover { background: #0e3460; }
   .btn-fermer { background: #f0f4f8; color: #4a5568; border: 1.5px solid #d1dbe8; }
   .btn-fermer:hover { background: #e2e8f0; }
-
-  .status { display: none; margin-top: 16px; padding: 14px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; animation: fadeIn .2s ease; line-height: 1.5; }
-  .status.err { background: #fff5f5; color: #9b2335; border: 1.5px solid #feb2b2; }
 
   .footer { margin-top: 24px; font-size: 11px; color: #a0aec0; text-align: center; }
 
@@ -172,7 +170,7 @@
     <div class="section-label">Identification</div>
     <div class="field-row">
       <div class="field">
-        <label for="f_caissier">Caissier (email) <span class="req">*</span>
+        <label for="f_caissier">Caissier <span class="req">*</span>
           <span class="hint">@glassem.com uniquement</span>
         </label>
         <div class="email-wrap">
@@ -204,7 +202,9 @@
     <div class="section-label">Paiement</div>
     <div class="field-row">
       <div class="field">
-        <label for="f_montant">Montant reçu (FCFA) <span class="req">*</span></label>
+        <label for="f_montant">Montant total déposé (FCFA) <span class="req">*</span>
+          <span class="hint">Total_Transaction</span>
+        </label>
         <input type="number" id="f_montant" min="1" step="1" placeholder="0">
       </div>
       <div class="field">
@@ -222,24 +222,39 @@
       </div>
     </div>
 
-    <!-- ══ PANEL FRAIS MOMO (affiché uniquement si Mobile Money) ══ -->
+    <!-- Panel MoMo -->
     <div class="momo-panel" id="momoPanel">
-      <div class="momo-question">Les frais de transaction MoMo (0,25%) sont-ils inclus dans le montant reçu ?</div>
+      <div class="momo-question">Les frais de transaction MoMo (0,25%) sont-ils inclus dans le montant déposé ?</div>
       <div class="toggle-row">
         <button type="button" class="toggle-btn" id="btnOui" onclick="setFrais(true)">✓ Oui — frais inclus</button>
         <button type="button" class="toggle-btn" id="btnNon" onclick="setFrais(false)">✗ Non — frais non inclus</button>
       </div>
-      <div class="frais-result" id="fraisResult"></div>
+      <!-- Récapitulatif dynamique -->
+      <div class="momo-recap" id="momoRecap" style="display:none;">
+        <div class="momo-recap-row">
+          <span class="lbl">Total déposé (Total_Transaction)</span>
+          <span class="val" id="recapTotal">—</span>
+        </div>
+        <div class="momo-recap-row">
+          <span class="lbl">Frais MoMo déduits (Frais_Momo)</span>
+          <span class="val" id="recapFrais">—</span>
+        </div>
+        <div class="momo-recap-row total">
+          <span class="lbl">Versement net de frais (crédit client)</span>
+          <span class="val" id="recapNet">—</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Champ frais caché — rempli automatiquement -->
     <input type="hidden" id="f_frais" value="0">
+    <input type="hidden" id="f_net"   value="0">
 
     <div class="field" style="margin-top:20px;">
       <label for="f_ref">N° de référence encaissement <span class="req">*</span>
-        <span class="hint">N° chèque, ID MoMo, reçu caisse…</span>
+        <span class="hint">N° chèque, ID MoMo, reçu caisse — unique</span>
       </label>
-      <input type="text" id="f_ref" placeholder="Ex : CHQ-00123 / MOMO-456789">
+      <input type="text" id="f_ref" placeholder="Ex : CHQ-00123 / MOMO-456789"
+             autocomplete="off" spellcheck="false">
     </div>
 
     <hr class="divider">
@@ -247,10 +262,10 @@
       Enregistrer l'encaissement
       <span class="spinner"></span>
     </button>
-    <div class="status err" id="statusMsg"></div>
+    <div class="status" id="statusMsg"></div>
   </form>
 
-  <!-- ══ ÉCRAN DE SUCCÈS (remplace le formulaire après validation) ══ -->
+  <!-- ══ ÉCRAN SUCCÈS ══ -->
   <div class="success-screen" id="successScreen">
     <div class="success-icon">✅</div>
     <div class="success-title">Encaissement enregistré avec succès</div>
@@ -258,13 +273,24 @@
       Votre encaissement a été enregistré avec succès.<br>
       Transaction en instance de traitement comptable.
     </div>
+    <!-- Récap montants affiché uniquement si MoMo -->
+    <div class="success-recap" id="successRecap" style="display:none;">
+      <div class="success-recap-row">
+        <span class="lbl">Total déposé</span>
+        <span id="srTotal">—</span>
+      </div>
+      <div class="success-recap-row">
+        <span class="lbl">Frais MoMo</span>
+        <span id="srFrais">—</span>
+      </div>
+      <div class="success-recap-row">
+        <span class="lbl">Versement net crédité</span>
+        <span id="srNet">—</span>
+      </div>
+    </div>
     <div class="success-actions">
-      <button class="btn-action btn-nouveau" onclick="nouveauFormulaire()">
-        + Nouvel encaissement
-      </button>
-      <button class="btn-action btn-fermer" onclick="fermerPage()">
-        Fermer
-      </button>
+      <button class="btn-action btn-nouveau" onclick="nouveauFormulaire()">+ Nouvel encaissement</button>
+      <button class="btn-action btn-fermer"  onclick="fermerPage()">Fermer</button>
     </div>
   </div>
 
@@ -278,21 +304,20 @@
 // ══════════════════════════════════════════════════════════════════
 //  CONFIGURATION
 // ══════════════════════════════════════════════════════════════════
-const SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbzjed9KipfKqPYF8dj2qf_KzNhStB4owmyWC1WPeNFjSTS3F8-2Rd9Zb3vYF8DtVA2d/exec";
-const SECRET_TOKEN = "GLASSEM_VAT_EsThgHh3PPMM";
+const SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbw-Y9XDdjRlyj9qHvw6hIGnLhitQujCY88Di2aWidoxz7h8GTCVLkHn17i6WEV3p7qt/exec";
+const SECRET_TOKEN = "GLASSEM_VAT_2025_SECRET";
 const DOMAINE      = "@glassem.com";
-const TAUX_MOMO    = 0.0025; // 0,25%
+const TAUX_MOMO    = 0.0025;
 
-let clientSoldes  = {};
-let fraisInclus   = null; // null = non répondu, true = oui, false = non
+let clientSoldes = {};
+let fraisInclus  = null;
 
+const fmt = v => new Intl.NumberFormat('fr-FR', {minimumFractionDigits:0, maximumFractionDigits:0}).format(Math.abs(v)) + ' FCFA';
 
 // ══════════════════════════════════════════════════════════════════
-//  CHARGEMENT CLIENTS DEPUIS LA BASE DE DONNÉES
+//  CHARGEMENT CLIENTS
 // ══════════════════════════════════════════════════════════════════
-
 async function chargerClients() {
-
   const bar = document.getElementById('dataBar');
   const msg = document.getElementById('dataMsg');
   const sel = document.getElementById('f_client');
@@ -300,16 +325,13 @@ async function chargerClients() {
   bar.className = 'data-bar loading';
   msg.textContent = 'Connexion à la base de données…';
 
-
   try {
     const res  = await fetch(`${SCRIPT_URL}?token=${encodeURIComponent(SECRET_TOKEN)}`);
     const json = await res.json();
 
     if (json.status === 'forbidden') throw new Error("Accès refusé — token invalide.");
     if (json.status === 'error')     throw new Error(json.error || "Erreur serveur.");
-    if (!json.clients || !json.clients.length) throw new Error("Aucun client trouvé dans la base de données.");
-
-
+    if (!json.clients?.length)       throw new Error("Aucun client trouvé dans la base.");
 
     clientSoldes = {};
     json.clients.forEach(c => { clientSoldes[c.nom] = c.solde; });
@@ -319,13 +341,11 @@ async function chargerClients() {
 
     bar.className = 'data-bar ok';
     msg.textContent = `Base de données connectée · ${json.total} client(s) chargé(s)`;
-
   } catch (err) {
     bar.className = 'data-bar err';
-    msg.innerHTML = `Erreur de connexion : ${esc(err.message)} &nbsp;—&nbsp; <a href="#" onclick="chargerClients();return false;" style="color:#9b2335;font-weight:700;">Réessayer</a>`;
+    msg.innerHTML = `Erreur : ${esc(err.message)} — <a href="#" onclick="chargerClients();return false;" style="color:#9b2335;font-weight:700;">Réessayer</a>`;
     const wrap = document.querySelector('#f_client')?.closest('.select-wrap');
-    if (wrap) wrap.innerHTML = `<input type="text" id="f_client" placeholder="Saisir le nom du client manuellement">`;
-    console.error('[VAT]', err);
+    if (wrap) wrap.innerHTML = `<input type="text" id="f_client" placeholder="Saisir le nom manuellement">`;
   }
 }
 
@@ -333,9 +353,8 @@ async function chargerClients() {
 //  SOLDE CLIENT
 // ══════════════════════════════════════════════════════════════════
 document.addEventListener('change', function(e) {
-  if (e.target && e.target.id === 'f_client') afficherSolde(e.target.value);
-  if (e.target && e.target.id === 'f_mode')   gererModePaiement(e.target.value);
-  if (e.target && e.target.id === 'f_montant') recalculerFrais();
+  if (e.target?.id === 'f_client') afficherSolde(e.target.value);
+  if (e.target?.id === 'f_mode')   gererMode(e.target.value);
 });
 
 function afficherSolde(client) {
@@ -344,71 +363,71 @@ function afficherSolde(client) {
   if (!client) { box.style.display = 'none'; return; }
   box.style.display = 'block';
   const solde = clientSoldes[client];
-  const fmt = v => new Intl.NumberFormat('fr-FR').format(Math.abs(v));
   if (solde === undefined) {
     box.className = 'solde-box grey'; amt.textContent = 'Solde non disponible';
   } else if (solde <= 0) {
     box.className = 'solde-box warn';
-    amt.textContent = solde === 0 ? '0 FCFA — Compte soldé' : `Avoir : ${fmt(solde)} FCFA`;
+    amt.textContent = solde === 0 ? '0 FCFA — Compte soldé' : `Avoir : ${fmt(solde)}`;
   } else {
-    box.className = 'solde-box'; amt.textContent = `${fmt(solde)} FCFA`;
+    box.className = 'solde-box'; amt.textContent = fmt(solde);
   }
 }
 
 // ══════════════════════════════════════════════════════════════════
-//  GESTION FRAIS MOMO
+//  GESTION MODE PAIEMENT / FRAIS MOMO
 // ══════════════════════════════════════════════════════════════════
-function gererModePaiement(mode) {
+function gererMode(mode) {
   const panel = document.getElementById('momoPanel');
   if (mode === 'Mobile Money') {
     panel.classList.add('visible');
-    fraisInclus = null;
-    document.getElementById('f_frais').value = 0;
-    document.getElementById('fraisResult').style.display = 'none';
-    document.getElementById('btnOui').className = 'toggle-btn';
-    document.getElementById('btnNon').className = 'toggle-btn';
   } else {
     panel.classList.remove('visible');
     fraisInclus = null;
     document.getElementById('f_frais').value = 0;
+    document.getElementById('f_net').value   = 0;
+    document.getElementById('momoRecap').style.display = 'none';
+    document.getElementById('btnOui').className = 'toggle-btn';
+    document.getElementById('btnNon').className = 'toggle-btn';
   }
 }
 
 function setFrais(inclus) {
   fraisInclus = inclus;
-  const montant = parseFloat(document.getElementById('f_montant').value) || 0;
-  recalculerFrais();
-  document.getElementById('btnOui').className = 'toggle-btn' + (inclus ? ' selected-oui' : '');
-  document.getElementById('btnNon').className = 'toggle-btn' + (!inclus ? ' selected-non' : '');
+  document.getElementById('btnOui').className = 'toggle-btn' + (inclus  ? ' sel-oui' : '');
+  document.getElementById('btnNon').className = 'toggle-btn' + (!inclus ? ' sel-non' : '');
+  recalculerMomo();
 }
 
-function recalculerFrais() {
+function recalculerMomo() {
   if (fraisInclus === null) return;
-  const montant = parseFloat(document.getElementById('f_montant').value) || 0;
-  const fraisEl = document.getElementById('fraisResult');
-  const fmt = v => new Intl.NumberFormat('fr-FR', {minimumFractionDigits:0, maximumFractionDigits:0}).format(v);
+  const total = parseFloat(document.getElementById('f_montant').value) || 0;
+  let frais, net;
 
   if (fraisInclus) {
-    // Frais inclus dans le montant reçu → frais = montant × 0,25%
-    const frais = Math.round(montant * TAUX_MOMO);
-    document.getElementById('f_frais').value = frais;
-    fraisEl.className = 'frais-result';
-    fraisEl.innerHTML = `Frais MoMo inclus : <strong>${fmt(frais)} FCFA</strong> &nbsp;·&nbsp; Montant net créditeur : <strong>${fmt(montant - frais)} FCFA</strong>`;
-    fraisEl.style.display = 'block';
+    // Total inclut les frais → frais = total × 0,25% / (1 + 0,25%) ≈ total × 0,25%
+    // Pour simplifier et rester conservateur : frais = total × 0,25%
+    frais = Math.round(total * TAUX_MOMO);
+    net   = total - frais;
   } else {
-    // Frais non inclus → frais = 0 (client ne les a pas payés)
-    document.getElementById('f_frais').value = 0;
-    fraisEl.className = 'frais-result non';
-    fraisEl.innerHTML = `Frais MoMo non inclus — Frais enregistrés : <strong>0 FCFA</strong>`;
-    fraisEl.style.display = 'block';
+    // Client n'a pas payé les frais → frais = 0 pour GLASSEM, net = total
+    frais = 0;
+    net   = total;
   }
+
+  document.getElementById('f_frais').value = frais;
+  document.getElementById('f_net').value   = net;
+
+  // Afficher le récap
+  document.getElementById('recapTotal').textContent = fmt(total);
+  document.getElementById('recapFrais').textContent = frais > 0 ? `- ${fmt(frais)}` : '0 FCFA (non inclus)';
+  document.getElementById('recapNet').textContent   = fmt(net);
+  document.getElementById('momoRecap').style.display = 'block';
 }
 
-// Recalcul en temps réel quand le montant change
-document.getElementById('f_montant').addEventListener('input', recalculerFrais);
+document.getElementById('f_montant').addEventListener('input', recalculerMomo);
 
 // ══════════════════════════════════════════════════════════════════
-//  VALIDATION EMAIL EN TEMPS RÉEL
+//  VALIDATION EMAIL
 // ══════════════════════════════════════════════════════════════════
 document.getElementById('f_caissier').addEventListener('input', function() {
   const val = this.value.trim();
@@ -426,26 +445,25 @@ document.getElementById('f_caissier').addEventListener('input', function() {
 // ══════════════════════════════════════════════════════════════════
 document.getElementById('vatForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const btn   = document.getElementById('submitBtn');
-  const stMsg = document.getElementById('statusMsg');
 
+  const btn  = document.getElementById('submitBtn');
+  const mode = document.getElementById('f_mode').value;
   const caissierPartie = document.getElementById('f_caissier').value.trim().toLowerCase();
-  const emailComplet   = caissierPartie + DOMAINE;
-  const modeReglement  = document.getElementById('f_mode').value;
 
-  // Validation MoMo : réponse obligatoire sur les frais
-  if (modeReglement === 'Mobile Money' && fraisInclus === null) {
-    showErr('Veuillez indiquer si les frais MoMo sont inclus dans le montant reçu.');
+  // Validation MoMo obligatoire
+  if (mode === 'Mobile Money' && fraisInclus === null) {
+    showStatus('err', '⚠️ Veuillez indiquer si les frais MoMo sont inclus dans le montant déposé.');
     return;
   }
 
+  // Validation champs
   const champs = [
-    { id: 'f_caissier', val: caissierPartie },
-    { id: 'f_date',     val: document.getElementById('f_date').value },
-    { id: 'f_client',   val: (document.getElementById('f_client') || {}).value || '' },
-    { id: 'f_montant',  val: document.getElementById('f_montant').value },
-    { id: 'f_mode',     val: modeReglement },
-    { id: 'f_ref',      val: document.getElementById('f_ref').value.trim() }
+    { id:'f_caissier', val:caissierPartie },
+    { id:'f_date',     val:document.getElementById('f_date').value },
+    { id:'f_client',   val:(document.getElementById('f_client')||{}).value||'' },
+    { id:'f_montant',  val:document.getElementById('f_montant').value },
+    { id:'f_mode',     val:mode },
+    { id:'f_ref',      val:document.getElementById('f_ref').value.trim() }
   ];
 
   let erreur = false;
@@ -454,49 +472,107 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
     if (!c.val) { if (el) el.classList.add('invalid'); erreur = true; }
     else if (el) el.classList.remove('invalid');
   });
-  if (erreur) { showErr('Veuillez remplir tous les champs obligatoires.'); return; }
+  if (erreur) { showStatus('err', '⚠️ Veuillez remplir tous les champs obligatoires.'); return; }
 
   if (!/^[a-zA-Z0-9._-]+$/.test(caissierPartie)) {
     document.getElementById('f_caissier').classList.add('invalid');
-    showErr(`Format invalide. Saisissez uniquement la partie avant ${DOMAINE} (ex: jean.dupont)`);
+    showStatus('err', `Format invalide. Saisissez uniquement la partie avant ${DOMAINE} (ex: jean.dupont)`);
     return;
   }
 
-  const montant = Number(document.getElementById('f_montant').value);
-  if (montant <= 0) {
+  const total = Number(document.getElementById('f_montant').value);
+  if (total <= 0) {
     document.getElementById('f_montant').classList.add('invalid');
-    showErr('Le montant reçu doit être supérieur à 0 FCFA.');
+    showStatus('err', 'Le montant total déposé doit être supérieur à 0 FCFA.');
     return;
   }
+
+  const frais = Number(document.getElementById('f_frais').value) || 0;
+  const net   = mode === 'Mobile Money'
+    ? Number(document.getElementById('f_net').value) || (total - frais)
+    : total; // pas MoMo → net = total
+
+  const ref = document.getElementById('f_ref').value.trim();
 
   const payload = {
-    token               : SECRET_TOKEN,
-    Date_Encaissement   : document.getElementById('f_date').value,
-    CAISSIER            : emailComplet,
-    Nom_Client          : document.getElementById('f_client').value,
-    Montant_Recu        : montant,
-    MODE_REGLEMENT      : modeReglement,
-    NO_REF_ENCAISSEMENT : document.getElementById('f_ref').value.trim(),
-    Frais_Transaction   : Number(document.getElementById('f_frais').value) || 0
+    token                : SECRET_TOKEN,
+    Date_Encaissement    : document.getElementById('f_date').value,
+    CAISSIER             : caissierPartie + DOMAINE,
+    Nom_Client           : document.getElementById('f_client').value,
+    Total_Transaction    : total,           // montant total déposé
+    Frais_Momo           : frais,           // frais MoMo (0 si pas MoMo ou non inclus)
+    Versement_NetDeFrais : net,             // montant net crédité client (base FIFO)
+    MODE_REGLEMENT       : mode,
+    NO_REF_ENCAISSEMENT  : ref
   };
 
   btn.disabled = true;
   btn.classList.add('busy');
-  stMsg.style.display = 'none';
+  document.getElementById('statusMsg').style.display = 'none';
 
   try {
-    await fetch(SCRIPT_URL, {
-      method : 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body   : JSON.stringify(payload)
-    });
+    // On utilise mode cors pour pouvoir lire la réponse (doublon détecté côté serveur)
+    let reponseServeur = null;
+    try {
+      const res = await fetch(SCRIPT_URL, {
+        method : 'POST',
+        mode   : 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify(payload)
+      });
+      reponseServeur = await res.json();
+    } catch {
+      // Si CORS bloque, on retombe en no-cors (succès présumé)
+      await fetch(SCRIPT_URL, {
+        method : 'POST',
+        mode   : 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify(payload)
+      });
+      reponseServeur = { status: 'ok' };
+    }
 
-    // Afficher l'écran de succès
+    // ── Gérer la réponse du serveur ──────────────────────────────
+    if (reponseServeur.status === 'doublon') {
+      // Référence déjà existante → message d'erreur explicite
+      document.getElementById('f_ref').classList.add('invalid');
+      showStatus('doublon',
+        `⛔ Transaction non valide — Référence en doublon\n\n` +
+        `La référence « ${esc(ref)} » a déjà été enregistrée dans le journal.\n` +
+        `Motif : chaque transaction doit avoir un numéro de référence unique ` +
+        `(N° chèque, ID MoMo ou reçu de caisse).\n\n` +
+        `✏️ Veuillez vérifier le numéro et corriger avant de soumettre à nouveau.`
+      );
+      return;
+    }
+
+    if (reponseServeur.status === 'email_invalide') {
+      document.getElementById('f_caissier').classList.add('invalid');
+      showStatus('err', `⚠️ Adresse email invalide : ${reponseServeur.message}`);
+      return;
+    }
+
+    if (reponseServeur.status === 'error') {
+      showStatus('err', `❌ Erreur serveur : ${reponseServeur.error || 'Veuillez réessayer.'}`);
+      return;
+    }
+
+    // ── Succès ───────────────────────────────────────────────────
+    // Afficher le récap MoMo dans l'écran de succès
+    if (mode === 'Mobile Money') {
+      document.getElementById('srTotal').textContent = fmt(total);
+      document.getElementById('srFrais').textContent = frais > 0 ? `- ${fmt(frais)}` : '0 FCFA (non inclus)';
+      document.getElementById('srNet').textContent   = fmt(net);
+      document.getElementById('successRecap').style.display = 'block';
+    } else {
+      document.getElementById('successRecap').style.display = 'none';
+    }
+
     document.getElementById('vatForm').style.display = 'none';
     document.getElementById('successScreen').style.display = 'block';
 
   } catch (err) {
-    showErr(`Erreur d'envoi : ${err.message}`);
+    showStatus('err', `❌ Erreur d'envoi : ${err.message}`);
   } finally {
     btn.disabled = false;
     btn.classList.remove('busy');
@@ -504,47 +580,50 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
 });
 
 // ══════════════════════════════════════════════════════════════════
-//  ACTIONS POST-VALIDATION
+//  POST-VALIDATION
 // ══════════════════════════════════════════════════════════════════
 function nouveauFormulaire() {
-  // Réinitialiser le formulaire
   document.getElementById('vatForm').reset();
   document.getElementById('soldeBox').style.display = 'none';
   document.getElementById('momoPanel').classList.remove('visible');
-  document.getElementById('fraisResult').style.display = 'none';
+  document.getElementById('momoRecap').style.display = 'none';
   document.getElementById('f_frais').value = 0;
-  document.getElementById('f_caissier').classList.remove('valid', 'invalid');
+  document.getElementById('f_net').value   = 0;
+  document.getElementById('f_caissier').classList.remove('valid','invalid');
   document.getElementById('statusMsg').style.display = 'none';
   document.getElementById('btnOui').className = 'toggle-btn';
   document.getElementById('btnNon').className = 'toggle-btn';
   fraisInclus = null;
   document.getElementById('f_date').valueAsDate = new Date();
-
-  // Afficher le formulaire, cacher l'écran succès
   document.getElementById('successScreen').style.display = 'none';
   document.getElementById('vatForm').style.display = 'block';
 }
 
 function fermerPage() {
-  // Tenter de fermer l'onglet (fonctionne si ouvert via un lien)
   window.close();
-  // Si le navigateur bloque window.close(), afficher un message
   setTimeout(() => {
-    document.getElementById('successScreen').innerHTML += `
-      <p style="margin-top:16px;font-size:12px;color:#a0aec0;">
-        Vous pouvez fermer cet onglet manuellement.
-      </p>`;
+    const sc = document.getElementById('successScreen');
+    if (!sc.querySelector('.close-note')) {
+      const p = document.createElement('p');
+      p.className = 'close-note';
+      p.style.cssText = 'margin-top:14px;font-size:12px;color:#a0aec0;';
+      p.textContent = 'Vous pouvez fermer cet onglet manuellement.';
+      sc.appendChild(p);
+    }
   }, 300);
 }
 
 // ══════════════════════════════════════════════════════════════════
 //  UTILITAIRES
 // ══════════════════════════════════════════════════════════════════
-function showErr(html) {
+function showStatus(type, text) {
   const el = document.getElementById('statusMsg');
-  el.className = 'status err';
-  el.innerHTML = html;
+  el.className = `status ${type}`;
+  // Conserver les sauts de ligne dans le message doublon
+  el.style.whiteSpace = 'pre-line';
+  el.textContent = text;
   el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function esc(s) {
