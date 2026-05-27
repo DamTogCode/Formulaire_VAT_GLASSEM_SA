@@ -12,61 +12,66 @@
     display: flex; flex-direction: column; align-items: center;
     padding: 32px 16px 64px; color: #1a2332;
   }
-  .header { width: 100%; max-width: 660px; text-align: center; margin-bottom: 32px; }
+  .header { width: 100%; max-width: 680px; text-align: center; margin-bottom: 28px; }
   .logo-bar {
     display: inline-flex; align-items: center; gap: 10px;
     background: #0a2540; color: #fff; padding: 10px 22px;
     border-radius: 40px; font-size: 12px; font-weight: 700;
-    letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px;
+    letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px;
   }
   .logo-bar .dot { width: 7px; height: 7px; background: #38d9a9; border-radius: 50%; }
-  h1 { font-size: 24px; font-weight: 700; color: #0a2540; margin-bottom: 4px; }
+  h1 { font-size: 22px; font-weight: 700; color: #0a2540; margin-bottom: 4px; }
   .subtitle { font-size: 13px; color: #6b7a8d; }
 
   .card {
     background: #fff; border-radius: 16px;
     box-shadow: 0 2px 20px rgba(10,37,64,.09), 0 0 0 1px rgba(10,37,64,.05);
-    padding: 36px 40px; width: 100%; max-width: 660px;
+    padding: 32px 36px; width: 100%; max-width: 680px;
   }
 
+  /* Status bar */
   .data-bar {
     display: flex; align-items: center; gap: 8px; font-size: 12px; color: #6b7a8d;
-    margin-bottom: 28px; padding: 9px 13px; background: #f7fafc;
+    margin-bottom: 26px; padding: 9px 13px; background: #f7fafc;
     border-radius: 8px; border: 1px solid #e2e8f0;
   }
   .data-bar .dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e0; flex-shrink: 0; }
-  .data-bar.ok  .dot { background: #38d9a9; }
-  .data-bar.err .dot { background: #fc8181; }
-  .data-bar.loading .dot { background: #f6ad55; animation: pulse 1s ease-in-out infinite; }
+  .data-bar.ok   .dot { background: #38d9a9; }
+  .data-bar.err  .dot { background: #fc8181; }
+  .data-bar.loading .dot { background: #f6ad55; animation: pulse 1s infinite; }
 
+  /* Form layout */
   .section-label {
     font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-    color: #a0aec0; border-bottom: 1px solid #edf2f7; padding-bottom: 6px; margin-bottom: 18px;
+    color: #a0aec0; border-bottom: 1px solid #edf2f7; padding-bottom: 6px; margin-bottom: 16px;
   }
-  .field { margin-bottom: 20px; }
-  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .field { margin-bottom: 18px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
   label {
     display: block; font-size: 11px; font-weight: 700; letter-spacing: .07em;
     text-transform: uppercase; color: #4a5568; margin-bottom: 6px;
   }
-  label .req { color: #e53e3e; margin-left: 2px; }
-  label .hint { font-weight: 400; font-size: 10px; text-transform: none; letter-spacing: 0; color: #a0aec0; margin-left: 4px; }
+  label .req  { color: #e53e3e; margin-left: 2px; }
+  label .hint { font-weight: 400; font-size: 10px; text-transform: none;
+                letter-spacing: 0; color: #a0aec0; margin-left: 4px; }
 
   input, select {
     width: 100%; padding: 11px 14px; border: 1.5px solid #d1dbe8; border-radius: 8px;
     font-size: 14px; color: #1a2332; background: #fff;
-    transition: border-color .15s, box-shadow .15s; appearance: none; -webkit-appearance: none;
+    transition: border-color .15s, box-shadow .15s;
+    appearance: none; -webkit-appearance: none;
   }
   input:focus, select:focus { outline: none; border-color: #0a2540; box-shadow: 0 0 0 3px rgba(10,37,64,.09); }
   input.invalid, select.invalid { border-color: #fc8181 !important; background: #fff5f5; }
-  input.valid { border-color: #38d9a9 !important; }
-  input[type="date"] { cursor: pointer; }
-  input[readonly] { background: #f7fafc; color: #4a5568; cursor: default; font-weight: 500; }
+  input.valid  { border-color: #38d9a9 !important; }
+  input[readonly] { background: #f7fafc; color: #4a5568; cursor: default; font-weight: 600; }
 
   .email-wrap { position: relative; }
   .email-wrap input { padding-right: 130px; }
-  .email-suffix { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 13px; color: #a0aec0; pointer-events: none; font-weight: 500; }
-
+  .email-suffix {
+    position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+    font-size: 13px; color: #a0aec0; pointer-events: none; font-weight: 500;
+  }
   .select-wrap { position: relative; }
   .select-wrap::after {
     content: ''; position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
@@ -74,78 +79,162 @@
     border-right: 5px solid transparent; border-top: 6px solid #6b7a8d; pointer-events: none;
   }
 
-  /* Solde box */
-  .solde-box { display: none; margin-top: 10px; padding: 14px 16px; border-radius: 8px; background: #eafaf4; border: 1.5px solid #38d9a9; animation: fadeIn .2s ease; }
-  .solde-box .lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #6b7a8d; margin-bottom: 4px; }
-  .solde-box .amt { font-size: 22px; font-weight: 700; color: #0d6e4e; letter-spacing: -.5px; }
+  /* Solde client */
+  .solde-box {
+    display: none; margin-top: 10px; padding: 12px 16px; border-radius: 8px;
+    background: #eafaf4; border: 1.5px solid #38d9a9; animation: fadeIn .2s ease;
+  }
+  .solde-box .lbl { font-size: 10px; font-weight: 700; text-transform: uppercase;
+                    letter-spacing: .07em; color: #6b7a8d; margin-bottom: 4px; }
+  .solde-box .amt { font-size: 20px; font-weight: 700; color: #0d6e4e; }
   .solde-box.warn { background: #fff8e6; border-color: #f6ad55; }
   .solde-box.warn .amt { color: #744210; }
   .solde-box.grey { background: #f7fafc; border-color: #cbd5e0; }
   .solde-box.grey .amt { font-size: 14px; color: #6b7a8d; font-weight: 500; }
 
-  /* MoMo panel */
-  .momo-panel { display: none; margin-top: 10px; padding: 16px; border-radius: 8px; background: #f7fafc; border: 1.5px solid #d1dbe8; animation: fadeIn .2s ease; }
+  /* ════ BLOC MOMO ════════════════════════════════════════════════ */
+  .momo-panel {
+    display: none; margin-top: -4px; margin-bottom: 18px;
+    background: #f7fafc; border: 1.5px solid #d1dbe8;
+    border-radius: 10px; padding: 18px; animation: fadeIn .2s ease;
+  }
   .momo-panel.visible { display: block; }
-  .momo-question { font-size: 13px; font-weight: 600; color: #1a2332; margin-bottom: 10px; }
-  .toggle-row { display: flex; gap: 10px; margin-bottom: 12px; }
-  .toggle-btn { flex: 1; padding: 9px; border-radius: 8px; font-size: 13px; font-weight: 600; border: 1.5px solid #d1dbe8; background: #fff; color: #6b7a8d; cursor: pointer; transition: all .15s; }
+
+  .momo-panel .mp-title {
+    font-size: 12px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase;
+    color: #4a5568; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+  }
+  .momo-panel .mp-title::before {
+    content: '📱'; font-size: 14px; text-transform: none;
+  }
+
+  /* Question frais */
+  .frais-question {
+    font-size: 13px; font-weight: 600; color: #1a2332; margin-bottom: 10px;
+  }
+  .frais-hint {
+    font-size: 11px; color: #6b7a8d; margin-bottom: 12px; line-height: 1.5;
+  }
+  .toggle-row { display: flex; gap: 10px; margin-bottom: 14px; }
+  .toggle-btn {
+    flex: 1; padding: 10px; border-radius: 8px; font-size: 13px;
+    font-weight: 600; border: 1.5px solid #d1dbe8; background: #fff;
+    color: #6b7a8d; cursor: pointer; transition: all .15s;
+  }
   .toggle-btn.sel-oui { background: #eafaf4; border-color: #38d9a9; color: #0d6e4e; }
   .toggle-btn.sel-non { background: #fff5f5; border-color: #fc8181; color: #9b2335; }
 
-  /* Récapitulatif MoMo */
-  .momo-recap { background: #fff; border: 1px solid #d1dbe8; border-radius: 8px; overflow: hidden; }
-  .momo-recap-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 14px; border-bottom: 1px solid #edf2f7; font-size: 13px; }
-  .momo-recap-row:last-child { border-bottom: none; }
-  .momo-recap-row .lbl { color: #6b7a8d; }
-  .momo-recap-row .val { font-weight: 600; color: #1a2332; }
-  .momo-recap-row.total { background: #0a2540; }
-  .momo-recap-row.total .lbl { color: #9ecbe8; font-weight: 600; }
-  .momo-recap-row.total .val { color: #38d9a9; font-size: 15px; }
+  /* Tableau répartition MoMo */
+  .momo-table {
+    background: #fff; border: 1px solid #d1dbe8; border-radius: 8px;
+    overflow: hidden; margin-top: 2px;
+  }
+  .momo-row {
+    display: grid; grid-template-columns: 1fr auto auto;
+    align-items: center; padding: 10px 14px;
+    border-bottom: 1px solid #edf2f7; gap: 12px;
+  }
+  .momo-row:last-child { border-bottom: none; }
+  .momo-row .col-label { font-size: 12px; color: #4a5568; }
+  .momo-row .col-field { font-size: 11px; font-weight: 600; color: #a0aec0;
+                         text-align: right; min-width: 160px; }
+  .momo-row .col-value {
+    font-size: 14px; font-weight: 700; color: #1a2332;
+    text-align: right; min-width: 110px;
+  }
+  .momo-row.row-frais .col-value  { color: #9b2335; }
+  .momo-row.row-net   { background: #0a2540; }
+  .momo-row.row-net .col-label   { color: #9ecbe8; font-weight: 600; }
+  .momo-row.row-net .col-field   { color: #4a7d9e; }
+  .momo-row.row-net .col-value   { color: #38d9a9; font-size: 15px; }
+  .momo-row.row-total .col-value { color: #2b6cb0; }
 
-  .divider { border: none; border-top: 1.5px solid #edf2f7; margin: 26px 0; }
+  .momo-note {
+    font-size: 11px; color: #6b7a8d; margin-top: 10px; line-height: 1.5;
+    padding: 8px 10px; background: #fffbea; border-radius: 6px;
+    border-left: 3px solid #f6ad55;
+  }
+
+  /* Champs non-MoMo nets */
+  .net-readonly-box {
+    display: none; margin-top: 8px; padding: 10px 14px;
+    background: #f7fafc; border: 1px solid #d1dbe8; border-radius: 8px;
+    font-size: 13px; color: #4a5568;
+  }
+  .net-readonly-box .nr-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase;
+                               letter-spacing: .07em; color: #a0aec0; margin-bottom: 3px; }
+  .net-readonly-box .nr-val { font-size: 16px; font-weight: 700; color: #0a2540; }
+
+  /* ════════════════════════════════════════════════════════════════ */
+  .divider { border: none; border-top: 1.5px solid #edf2f7; margin: 24px 0; }
 
   .btn-submit {
     width: 100%; padding: 14px; background: #0a2540; color: #fff; border: none;
-    border-radius: 8px; font-size: 15px; font-weight: 700; letter-spacing: .02em;
-    cursor: pointer; transition: background .15s, transform .1s; position: relative;
+    border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer;
+    transition: background .15s, transform .1s; position: relative;
   }
   .btn-submit:hover:not(:disabled) { background: #0e3460; }
   .btn-submit:active:not(:disabled) { transform: scale(.99); }
   .btn-submit:disabled { background: #a0aec0; cursor: not-allowed; }
-  .spinner { display: none; width: 17px; height: 17px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: spin .6s linear infinite; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); }
+  .spinner {
+    display: none; width: 17px; height: 17px;
+    border: 2px solid rgba(255,255,255,.35); border-top-color: #fff;
+    border-radius: 50%; animation: spin .6s linear infinite;
+    position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+  }
   .btn-submit.busy .spinner { display: block; }
 
-  /* Status messages */
-  .status { display: none; margin-top: 16px; padding: 14px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; animation: fadeIn .2s ease; line-height: 1.6; }
-  .status.err    { background: #fff5f5; color: #9b2335; border: 1.5px solid #feb2b2; }
-  .status.doublon{ background: #fff8e6; color: #744210; border: 1.5px solid #f6ad55; }
+  /* Messages statut */
+  .status {
+    display: none; margin-top: 14px; padding: 13px 16px; border-radius: 8px;
+    font-size: 13px; font-weight: 500; animation: fadeIn .2s ease; line-height: 1.7;
+    white-space: pre-line;
+  }
+  .status.err     { background: #fff5f5; color: #9b2335; border: 1.5px solid #feb2b2; }
+  .status.doublon { background: #fff8e6; color: #744210; border: 1.5px solid #f6ad55; }
 
   /* Écran succès */
-  .success-screen { display: none; text-align: center; padding: 20px 0 10px; animation: fadeIn .3s ease; }
-  .success-icon { font-size: 48px; margin-bottom: 12px; }
+  .success-screen { display: none; text-align: center; padding: 16px 0 8px; animation: fadeIn .3s ease; }
+  .success-icon  { font-size: 44px; margin-bottom: 10px; }
   .success-title { font-size: 17px; font-weight: 700; color: #0d6e4e; margin-bottom: 8px; }
-  .success-msg { font-size: 13px; color: #6b7a8d; line-height: 1.6; margin-bottom: 20px; }
-  /* Récap succès MoMo */
-  .success-recap { background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px 18px; margin: 0 auto 22px; max-width: 400px; text-align: left; }
-  .success-recap-row { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; border-bottom: 1px solid #edf2f7; }
-  .success-recap-row:last-child { border-bottom: none; font-weight: 700; color: #0a2540; }
-  .success-recap-row .lbl { color: #6b7a8d; }
+  .success-msg   { font-size: 13px; color: #6b7a8d; line-height: 1.6; margin-bottom: 20px; }
+
+  /* Récap succès */
+  .success-recap {
+    background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 10px;
+    padding: 14px 18px; margin: 0 auto 22px; max-width: 420px; text-align: left;
+  }
+  .sr-row {
+    display: grid; grid-template-columns: 1fr auto auto;
+    font-size: 13px; padding: 6px 0; border-bottom: 1px solid #edf2f7; gap: 10px;
+  }
+  .sr-row:last-child { border-bottom: none; font-weight: 700; color: #0a2540; }
+  .sr-row .sr-lbl  { color: #6b7a8d; }
+  .sr-row .sr-col  { font-size: 11px; color: #a0aec0; text-align: right; }
+  .sr-row .sr-val  { font-weight: 700; text-align: right; }
+  .sr-row.sr-frais .sr-val { color: #9b2335; }
+  .sr-row.sr-net   .sr-val { color: #0d6e4e; }
+
   .success-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn-action { padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: opacity .15s, transform .1s; }
+  .btn-action { padding: 11px 24px; border-radius: 8px; font-size: 14px;
+                font-weight: 600; cursor: pointer; border: none; transition: opacity .15s, transform .1s; }
   .btn-action:active { transform: scale(.98); }
   .btn-nouveau { background: #0a2540; color: #fff; }
   .btn-nouveau:hover { background: #0e3460; }
-  .btn-fermer { background: #f0f4f8; color: #4a5568; border: 1.5px solid #d1dbe8; }
+  .btn-fermer  { background: #f0f4f8; color: #4a5568; border: 1.5px solid #d1dbe8; }
   .btn-fermer:hover { background: #e2e8f0; }
 
-  .footer { margin-top: 24px; font-size: 11px; color: #a0aec0; text-align: center; }
+  .footer { margin-top: 22px; font-size: 11px; color: #a0aec0; text-align: center; }
 
   @keyframes spin   { to { transform: translateY(-50%) rotate(360deg); } }
   @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
   @keyframes pulse  { 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
-  @media (max-width: 520px) {
-    .card { padding: 24px 18px; }
+
+  @media (max-width: 540px) {
+    .card { padding: 22px 16px; }
     .field-row { grid-template-columns: 1fr; gap: 0; }
+    .momo-row { grid-template-columns: 1fr; gap: 2px; }
+    .momo-row .col-field, .momo-row .col-value { text-align: left; }
   }
 </style>
 </head>
@@ -154,7 +243,7 @@
 <div class="header">
   <div class="logo-bar"><span class="dot"></span>GLASSEM SA<span class="dot"></span></div>
   <h1>Formulaire d'Encaissement VAT</h1>
-  <p class="subtitle">Saisie des paiements reçus</p>
+  <p class="subtitle">Saisie des paiements reçus — Journal_Encaissements</p>
 </div>
 
 <div class="card">
@@ -164,8 +253,10 @@
     <span id="dataMsg">Connexion à la base de données…</span>
   </div>
 
+  <!-- ══ FORMULAIRE ══════════════════════════════════════════════ -->
   <form id="vatForm" novalidate>
 
+    <!-- Identification -->
     <div class="section-label">Identification</div>
     <div class="field-row">
       <div class="field">
@@ -184,6 +275,7 @@
       </div>
     </div>
 
+    <!-- Client -->
     <div class="section-label">Client</div>
     <div class="field">
       <label for="f_client">Nom du client <span class="req">*</span></label>
@@ -198,13 +290,15 @@
       </div>
     </div>
 
+    <!-- Paiement : montant + mode -->
     <div class="section-label">Paiement</div>
     <div class="field-row">
       <div class="field">
-        <label for="f_montant">Montant total déposé (FCFA) <span class="req">*</span>
+        <label for="f_total">
+          Montant total déposé (FCFA) <span class="req">*</span>
           <span class="hint">Total_Transaction</span>
         </label>
-        <input type="number" id="f_montant" min="1" step="1" placeholder="0">
+        <input type="number" id="f_total" min="1" step="1" placeholder="0">
       </div>
       <div class="field">
         <label for="f_mode">Mode de règlement <span class="req">*</span></label>
@@ -221,34 +315,71 @@
       </div>
     </div>
 
+    <!-- ══ BLOC MOBILE MONEY (affiché uniquement si MoMo sélectionné) ══ -->
     <div class="momo-panel" id="momoPanel">
-      <div class="momo-question">Les frais de transaction MoMo (0,25%) sont-ils inclus dans le montant déposé ?</div>
+      <div class="mp-title">Mobile Money — Répartition des frais</div>
+
+      <div class="frais-question">Les frais de transaction MoMo sont-ils inclus dans le montant déposé ?</div>
+      <div class="frais-hint">
+        Taux frais opérateur MoMo : <strong>0,25%</strong> du montant total déposé.<br>
+        Si <strong>Oui</strong> : le client a déposé frais compris → GLASSEM reçoit le net.<br>
+        Si <strong>Non</strong> : l'opérateur ne prélève pas → GLASSEM reçoit le total.
+      </div>
+
       <div class="toggle-row">
-        <button type="button" class="toggle-btn" id="btnOui" onclick="setFrais(true)">✓ Oui — frais inclus</button>
-        <button type="button" class="toggle-btn" id="btnNon" onclick="setFrais(false)">✗ Non — frais non inclus</button>
+        <button type="button" class="toggle-btn" id="btnOui" onclick="setFrais(true)">
+          ✓ Oui — frais inclus dans le dépôt
+        </button>
+        <button type="button" class="toggle-btn" id="btnNon" onclick="setFrais(false)">
+          ✗ Non — frais non inclus
+        </button>
       </div>
-      <div class="momo-recap" id="momoRecap" style="display:none;">
-        <div class="momo-recap-row">
-          <span class="lbl">Total déposé (Total_Transaction)</span>
-          <span class="val" id="recapTotal">—</span>
+
+      <!--
+        Tableau de répartition — colonnes Google Sheet ciblées :
+        ┌──────────────────────────┬──────────────────────┬──────────────────────┐
+        │ Libellé                  │ Colonne GSheet       │ Valeur               │
+        ├──────────────────────────┼──────────────────────┼──────────────────────┤
+        │ Montant total déposé     │ Total_Transaction    │ Saisi par le caissier│
+        │ Frais MoMo (0,25%)       │ Frais_Momo           │ Total × 0,25%        │
+        │ Versement net de frais   │ Versement_NetDeFrais │ Total − Frais        │
+        └──────────────────────────┴──────────────────────┴──────────────────────┘
+      -->
+      <div class="momo-table" id="momoTable" style="display:none;">
+        <div class="momo-row row-total">
+          <span class="col-label">Montant total déposé (brut)</span>
+          <span class="col-field">→ Total_Transaction</span>
+          <span class="col-value" id="tTotal">—</span>
         </div>
-        <div class="momo-recap-row">
-          <span class="lbl">Frais MoMo déduits (Frais_Momo)</span>
-          <span class="val" id="recapFrais">—</span>
+        <div class="momo-row row-frais">
+          <span class="col-label">Frais MoMo déduits (0,25%)</span>
+          <span class="col-field">→ Frais_Momo</span>
+          <span class="col-value" id="tFrais">—</span>
         </div>
-        <div class="momo-recap-row total">
-          <span class="lbl">Versement net de frais (crédit client)</span>
-          <span class="val" id="recapNet">—</span>
+        <div class="momo-row row-net">
+          <span class="col-label">Versement net de frais <small>(base allocation FIFO)</small></span>
+          <span class="col-field">→ Versement_NetDeFrais</span>
+          <span class="col-value" id="tNet">—</span>
         </div>
       </div>
+
+      <div class="momo-note" id="momoNote" style="display:none;"></div>
     </div>
 
+    <!-- Affichage net pour modes non-MoMo (informatif) -->
+    <div class="net-readonly-box" id="netBox">
+      <div class="nr-lbl">Versement_NetDeFrais (Frais_Momo = 0)</div>
+      <div class="nr-val" id="netBoxVal">—</div>
+    </div>
+
+    <!-- Champs cachés transmis au serveur -->
     <input type="hidden" id="f_frais" value="0">
     <input type="hidden" id="f_net"   value="0">
 
+    <!-- Référence -->
     <div class="field" style="margin-top:20px;">
       <label for="f_ref">N° de référence encaissement <span class="req">*</span>
-        <span class="hint">N° chèque, ID MoMo, reçu caisse — unique</span>
+        <span class="hint">N° chèque · ID MoMo · Reçu caisse — unique</span>
       </label>
       <input type="text" id="f_ref" placeholder="Ex : CHQ-00123 / MOMO-456789"
              autocomplete="off" spellcheck="false">
@@ -262,27 +393,34 @@
     <div class="status" id="statusMsg"></div>
   </form>
 
+  <!-- ══ ÉCRAN SUCCÈS ═══════════════════════════════════════════ -->
   <div class="success-screen" id="successScreen">
     <div class="success-icon">✅</div>
     <div class="success-title">Encaissement enregistré avec succès</div>
     <div class="success-msg">
-      Votre encaissement a été enregistré avec succès.<br>
-      Transaction en instance de traitement comptable.
+      Transaction enregistrée dans <strong>Journal_Encaissements</strong><br>
+      Statut : <strong>En attente</strong> — en cours de traitement FIFO.
     </div>
-    <div class="success-recap" id="successRecap" style="display:none;">
-      <div class="success-recap-row">
-        <span class="lbl">Total déposé</span>
-        <span id="srTotal">—</span>
+
+    <!-- Récap détaillé des 3 colonnes GSheet (affiché toujours) -->
+    <div class="success-recap" id="successRecap">
+      <div class="sr-row">
+        <span class="sr-lbl">Total_Transaction</span>
+        <span class="sr-col">(montant brut déposé)</span>
+        <span class="sr-val" id="srTotal">—</span>
       </div>
-      <div class="success-recap-row">
-        <span class="lbl">Frais MoMo</span>
-        <span id="srFrais">—</span>
+      <div class="sr-row sr-frais">
+        <span class="sr-lbl">Frais_Momo</span>
+        <span class="sr-col">(prélevés par l'opérateur)</span>
+        <span class="sr-val" id="srFrais">—</span>
       </div>
-      <div class="success-recap-row">
-        <span class="lbl">Versement net crédité</span>
-        <span id="srNet">—</span>
+      <div class="sr-row sr-net">
+        <span class="sr-lbl">Versement_NetDeFrais</span>
+        <span class="sr-col">(base allocation FIFO)</span>
+        <span class="sr-val" id="srNet">—</span>
       </div>
     </div>
+
     <div class="success-actions">
       <button class="btn-action btn-nouveau" onclick="nouveauFormulaire()">+ Nouvel encaissement</button>
       <button class="btn-action btn-fermer"  onclick="fermerPage()">Fermer</button>
@@ -292,7 +430,7 @@
 </div>
 
 <div class="footer">
-  GLASSEM SA · Formulaire d'Encaissement VAT · Traitement comptable via Make.com
+  GLASSEM SA · Formulaire Encaissement VAT · Colonnes : Total_Transaction | Frais_Momo | Versement_NetDeFrais
 </div>
 
 <script>
@@ -302,15 +440,18 @@
 const SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbzjed9KipfKqPYF8dj2qf_KzNhStB4owmyWC1WPeNFjSTS3F8-2Rd9Zb3vYF8DtVA2d/exec";
 const SECRET_TOKEN = "GLASSEM_VAT_EsThgHh3PPMM";
 const DOMAINE      = "@glassem.com";
-const TAUX_MOMO    = 0.0025;
+const TAUX_MOMO    = 0.0025;  // 0,25%
 
 let clientSoldes = {};
-let fraisInclus  = null;
+let fraisInclus  = null;  // null = non choisi, true = oui, false = non
 
-const fmt = v => new Intl.NumberFormat('fr-FR', {minimumFractionDigits:0, maximumFractionDigits:0}).format(Math.abs(v)) + ' FCFA';
+// ── Formatage monétaire ──────────────────────────────────────────
+const fmt = v =>
+  new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })
+    .format(Math.round(Math.abs(v))) + ' FCFA';
 
 // ══════════════════════════════════════════════════════════════════
-//  CHARGEMENT CLIENTS
+//  CHARGEMENT CLIENTS depuis Apps Script
 // ══════════════════════════════════════════════════════════════════
 async function chargerClients() {
   const bar = document.getElementById('dataBar');
@@ -334,22 +475,21 @@ async function chargerClients() {
     sel.innerHTML = '<option value="">— Sélectionner un client —</option>' +
       json.clients.map(c => `<option value="${esc(c.nom)}">${esc(c.nom)}</option>`).join('');
 
-    bar.className = 'data-bar ok';
-    msg.textContent = `Base de données connectée · ${json.total} client(s) chargé(s)`;
+    bar.className  = 'data-bar ok';
+    msg.textContent = `Base connectée · ${json.total || json.clients.length} client(s) chargé(s)`;
   } catch (err) {
     bar.className = 'data-bar err';
-    msg.innerHTML = `Erreur : ${esc(err.message)} — <a href="#" onclick="chargerClients();return false;" style="color:#9b2335;font-weight:700;">Réessayer</a>`;
-    const wrap = document.querySelector('#f_client')?.closest('.select-wrap');
-    if (wrap) wrap.innerHTML = `<input type="text" id="f_client" placeholder="Saisir le nom manuellement">`;
+    msg.innerHTML = `Erreur : ${esc(err.message)} — <a href="#" onclick="chargerClients();return false;"
+                    style="color:#9b2335;font-weight:700;">Réessayer</a>`;
+    sel.innerHTML = '<option value="">Saisir manuellement le nom</option>';
   }
 }
 
 // ══════════════════════════════════════════════════════════════════
 //  SOLDE CLIENT
 // ══════════════════════════════════════════════════════════════════
-document.addEventListener('change', function(e) {
-  if (e.target?.id === 'f_client') afficherSolde(e.target.value);
-  if (e.target?.id === 'f_mode')   gererMode(e.target.value);
+document.getElementById('f_client').addEventListener('change', function() {
+  afficherSolde(this.value);
 });
 
 function afficherSolde(client) {
@@ -359,32 +499,78 @@ function afficherSolde(client) {
   box.style.display = 'block';
   const solde = clientSoldes[client];
   if (solde === undefined) {
-    box.className = 'solde-box grey'; amt.textContent = 'Solde non disponible';
+    box.className = 'solde-box grey';
+    amt.textContent = 'Solde non disponible';
   } else if (solde <= 0) {
     box.className = 'solde-box warn';
-    amt.textContent = solde === 0 ? '0 FCFA — Compte soldé' : `Avoir : ${fmt(solde)}`;
+    amt.textContent = solde === 0 ? '0 FCFA — Compte soldé' : `Avoir disponible : ${fmt(solde)}`;
   } else {
-    box.className = 'solde-box'; amt.textContent = fmt(solde);
+    box.className = 'solde-box';
+    amt.textContent = fmt(solde);
   }
 }
 
 // ══════════════════════════════════════════════════════════════════
-//  GESTION MODE PAIEMENT / FRAIS MOMO
+//  GESTION DU MODE DE RÈGLEMENT
 // ══════════════════════════════════════════════════════════════════
+document.getElementById('f_mode').addEventListener('change', function() {
+  gererMode(this.value);
+});
+
 function gererMode(mode) {
-  const panel = document.getElementById('momoPanel');
+  const panel  = document.getElementById('momoPanel');
+  const netBox = document.getElementById('netBox');
+
   if (mode === 'Mobile Money') {
+    // Afficher le bloc MoMo, masquer le net-box simple
     panel.classList.add('visible');
+    netBox.style.display = 'none';
+    // Recalculer si frais déjà choisi
+    if (fraisInclus !== null) recalculerMomo();
   } else {
+    // Masquer MoMo, réinitialiser
     panel.classList.remove('visible');
     fraisInclus = null;
+    resetMomoBtns();
+    document.getElementById('momoTable').style.display = 'none';
+    document.getElementById('momoNote').style.display  = 'none';
+    // Pour les autres modes : Frais_Momo = 0, Net = Total
+    const total = parseFloat(document.getElementById('f_total').value) || 0;
     document.getElementById('f_frais').value = 0;
-    document.getElementById('f_net').value   = 0;
-    document.getElementById('momoRecap').style.display = 'none';
-    document.getElementById('btnOui').className = 'toggle-btn';
-    document.getElementById('btnNon').className = 'toggle-btn';
+    document.getElementById('f_net').value   = total;
+    if (total > 0) {
+      netBox.style.display = 'block';
+      document.getElementById('netBoxVal').textContent =
+        `${fmt(total)} (Frais_Momo = 0 FCFA)`;
+    } else {
+      netBox.style.display = 'none';
+    }
   }
 }
+
+// ══════════════════════════════════════════════════════════════════
+//  RÉPARTITION MOMO
+//
+//  Colonnes Google Sheet alimentées :
+//  ┌───────────────────────────────────┬──────────────────────────┐
+//  │ Total_Transaction                 │ Montant brut saisi       │
+//  │ Frais_Momo                        │ Total × 0,25% (si oui)  │
+//  │ Versement_NetDeFrais              │ Total − Frais_Momo       │
+//  └───────────────────────────────────┴──────────────────────────┘
+//
+//  CAS 1 — fraisInclus = true (Oui)
+//    Le client a intégré les frais dans son dépôt.
+//    L'opérateur MoMo prélève 0,25% sur le total.
+//    GLASSEM reçoit : Total − Frais = Versement_NetDeFrais
+//    → Frais_Momo = round(Total × 0,25%)
+//    → Versement_NetDeFrais = Total − Frais_Momo
+//
+//  CAS 2 — fraisInclus = false (Non)
+//    L'opérateur ne prélève pas de frais (ou frais hors dépôt).
+//    GLASSEM reçoit la totalité du dépôt.
+//    → Frais_Momo = 0
+//    → Versement_NetDeFrais = Total_Transaction
+// ══════════════════════════════════════════════════════════════════
 
 function setFrais(inclus) {
   fraisInclus = inclus;
@@ -395,30 +581,70 @@ function setFrais(inclus) {
 
 function recalculerMomo() {
   if (fraisInclus === null) return;
-  const total = parseFloat(document.getElementById('f_montant').value) || 0;
+  const total = Math.round(parseFloat(document.getElementById('f_total').value) || 0);
+  if (total <= 0) return;
+
   let frais, net;
 
   if (fraisInclus) {
-    // Calcul financier exact : les frais sont rétro-calculés depuis la masse totale reçue
-    frais = Math.round(total * (TAUX_MOMO / (1 + TAX_MOMO || 1.0025)));
+    // CAS 1 : frais inclus dans le dépôt → opérateur prélève 0,25%
+    frais = Math.round(total * TAUX_MOMO);
     net   = total - frais;
   } else {
-    // Les frais ne sont pas pris en compte dans le dépôt : le montant reçu correspond à 100% au montant net
+    // CAS 2 : frais non inclus → Frais_Momo = 0
     frais = 0;
     net   = total;
   }
 
+  // Mettre à jour les champs cachés (seront envoyés au serveur)
   document.getElementById('f_frais').value = frais;
   document.getElementById('f_net').value   = net;
 
-  // Afficher le récap
-  document.getElementById('recapTotal').textContent = fmt(total);
-  document.getElementById('recapFrais').textContent = frais > 0 ? `- ${fmt(frais)}` : '0 FCFA (non inclus)';
-  document.getElementById('recapNet').textContent   = fmt(net);
-  document.getElementById('momoRecap').style.display = 'block';
+  // Afficher le tableau de répartition
+  document.getElementById('tTotal').textContent = fmt(total);
+  document.getElementById('tFrais').textContent = frais > 0 ? `− ${fmt(frais)}` : '0 FCFA';
+  document.getElementById('tNet').textContent   = fmt(net);
+  document.getElementById('momoTable').style.display = 'block';
+
+  // Note contextuelle
+  const note = document.getElementById('momoNote');
+  note.style.display = 'block';
+  if (fraisInclus) {
+    note.innerHTML =
+      `💡 <strong>Base FIFO = ${fmt(net)}</strong> — C'est ce montant qui sera alloué sur vos factures.<br>` +
+      `Les ${fmt(frais)} de frais MoMo sont la charge de l'opérateur — ` +
+      `<strong>ils ne constituent pas un trop-payé</strong> et ne seront pas reversés en avoir.`;
+  } else {
+    note.innerHTML =
+      `💡 <strong>Base FIFO = ${fmt(net)}</strong> — Aucun frais MoMo prélevé.<br>` +
+      `Total_Transaction = Versement_NetDeFrais = ${fmt(net)}, Frais_Momo = 0 FCFA.`;
+  }
 }
 
-document.getElementById('f_montant').addEventListener('input', recalculerMomo);
+// Recalculer si le montant change pendant que MoMo est actif
+document.getElementById('f_total').addEventListener('input', function() {
+  const mode = document.getElementById('f_mode').value;
+  if (mode === 'Mobile Money') {
+    if (fraisInclus !== null) recalculerMomo();
+  } else {
+    // Mode non-MoMo : mettre à jour net = total
+    const total = Math.round(parseFloat(this.value) || 0);
+    document.getElementById('f_frais').value = 0;
+    document.getElementById('f_net').value   = total;
+    const netBox = document.getElementById('netBox');
+    if (total > 0) {
+      netBox.style.display = 'block';
+      document.getElementById('netBoxVal').textContent = `${fmt(total)} (Frais_Momo = 0 FCFA)`;
+    } else {
+      netBox.style.display = 'none';
+    }
+  }
+});
+
+function resetMomoBtns() {
+  document.getElementById('btnOui').className = 'toggle-btn';
+  document.getElementById('btnNon').className = 'toggle-btn';
+}
 
 // ══════════════════════════════════════════════════════════════════
 //  VALIDATION EMAIL
@@ -440,9 +666,9 @@ document.getElementById('f_caissier').addEventListener('input', function() {
 document.getElementById('vatForm').addEventListener('submit', async function(e) {
   e.preventDefault();
 
-  const btn  = document.getElementById('submitBtn');
-  const mode = document.getElementById('f_mode').value;
-  const caissierPartie = document.getElementById('f_caissier').value.trim().toLowerCase();
+  const btn     = document.getElementById('submitBtn');
+  const mode    = document.getElementById('f_mode').value;
+  const caissier = document.getElementById('f_caissier').value.trim().toLowerCase();
 
   // Validation MoMo obligatoire
   if (mode === 'Mobile Money' && fraisInclus === null) {
@@ -450,57 +676,61 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
     return;
   }
 
-  // Validation champs
-  const champs = [
-    { id:'f_caissier', val:caissierPartie },
-    { id:'f_date',      val:document.getElementById('f_date').value },
-    { id:'f_client',   val:(document.getElementById('f_client')||{}).value||'' },
-    { id:'f_montant',  val:document.getElementById('f_montant').value },
-    { id:'f_mode',     val:mode },
-    { id:'f_ref',      val:document.getElementById('f_ref').value.trim() }
-  ];
+  // Validation champs obligatoires
+  const total = parseFloat(document.getElementById('f_total').value) || 0;
+  const ref   = document.getElementById('f_ref').value.trim();
+  const client = (document.getElementById('f_client') || {}).value || '';
+  const date   = document.getElementById('f_date').value;
 
+  const champsVal = [
+    { id: 'f_caissier', val: caissier },
+    { id: 'f_date',     val: date },
+    { id: 'f_client',   val: client },
+    { id: 'f_total',    val: total > 0 ? String(total) : '' },
+    { id: 'f_mode',     val: mode },
+    { id: 'f_ref',      val: ref },
+  ];
   let erreur = false;
-  champs.forEach(c => {
+  champsVal.forEach(c => {
     const el = document.getElementById(c.id);
     if (!c.val) { if (el) el.classList.add('invalid'); erreur = true; }
     else if (el) el.classList.remove('invalid');
   });
   if (erreur) { showStatus('err', '⚠️ Veuillez remplir tous les champs obligatoires.'); return; }
 
-  if (!/^[a-zA-Z0-9._-]+$/.test(caissierPartie)) {
+  if (!/^[a-zA-Z0-9._-]+$/.test(caissier)) {
     document.getElementById('f_caissier').classList.add('invalid');
-    showStatus('err', `Format invalide. Saisissez uniquement la partie avant ${DOMAINE} (ex: jean.dupont)`);
+    showStatus('err', `Format invalide. Saisissez uniquement la partie avant ${DOMAINE} (ex : jean.dupont)`);
     return;
   }
-
-  const total = Number(document.getElementById('f_montant').value);
   if (total <= 0) {
-    document.getElementById('f_montant').classList.add('invalid');
+    document.getElementById('f_total').classList.add('invalid');
     showStatus('err', 'Le montant total déposé doit être supérieur à 0 FCFA.');
     return;
   }
 
-  const frais = Number(document.getElementById('f_frais').value) || 0;
-  const net   = mode === 'Mobile Money'
-    ? Number(document.getElementById('f_net').value) || (total - frais)
-    : total; 
+  // Récupérer les valeurs finales des trois colonnes
+  const total_transaction    = Math.round(total);
+  const frais_momo           = parseInt(document.getElementById('f_frais').value) || 0;
+  const versement_net_frais  = mode === 'Mobile Money'
+    ? (parseInt(document.getElementById('f_net').value) || total_transaction)
+    : total_transaction;  // non MoMo : net = total, frais = 0
 
-  const ref = document.getElementById('f_ref').value.trim();
-
-  // Objet Payload respectant l'ordre exact de vos colonnes cibles :
-  // ID_ENCAISSEMENT | Date_Encaissement | CAISSIER | Nom_Client | Versement_NetDeFrais | MODE_REGLEMENT | NO_REF_ENCAISSEMENT | Statut_Utilisation | Frais_Momo | Total_Transaction
+  // Payload — ordre des colonnes Journal_Encaissements :
+  // ID_ENCAISSEMENT | Date_Encaissement | CAISSIER | Nom_Client
+  // | Versement_NetDeFrais | MODE_REGLEMENT | NO_REF_ENCAISSEMENT
+  // | Statut_Utilisation | Frais_Momo | Total_Transaction
   const payload = {
     token                : SECRET_TOKEN,
-    Date_Encaissement    : document.getElementById('f_date').value,
-    CAISSIER             : caissierPartie + DOMAINE,
-    Nom_Client           : document.getElementById('f_client').value,
-    Versement_NetDeFrais : net,   // Montant net crédité au client
-    MODE_REGLEMENT       : mode,
-    NO_REF_ENCAISSEMENT  : ref,
-    Statut_Utilisation   : "En attente", // Valeur par défaut initiale
-    Frais_Momo           : frais, // 0 si pas MoMo ou non inclus
-    Total_Transaction    : total  // Masse totale brute de la transaction
+    Date_Encaissement    : date,
+    CAISSIER             : caissier + DOMAINE,
+    Nom_Client           : client,
+    Versement_NetDeFrais : versement_net_frais,   // ← colonne E
+    MODE_REGLEMENT       : mode,                  // ← colonne F
+    NO_REF_ENCAISSEMENT  : ref,                   // ← colonne G
+    // Statut_Utilisation géré côté Apps Script → "En attente"
+    Frais_Momo           : frais_momo,            // ← colonne I
+    Total_Transaction    : total_transaction,     // ← colonne J
   };
 
   btn.disabled = true;
@@ -508,59 +738,54 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
   document.getElementById('statusMsg').style.display = 'none';
 
   try {
-    let reponseServeur = null;
+    let rep = null;
     try {
       const res = await fetch(SCRIPT_URL, {
         method : 'POST',
         mode   : 'cors',
         headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify(payload)
+        body   : JSON.stringify(payload),
       });
-      reponseServeur = await res.json();
+      rep = await res.json();
     } catch {
+      // Fallback no-cors si CORS bloqué
       await fetch(SCRIPT_URL, {
         method : 'POST',
         mode   : 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify(payload)
+        body   : JSON.stringify(payload),
       });
-      reponseServeur = { status: 'ok' };
+      rep = { status: 'ok' };
     }
 
-    if (reponseServeur.status === 'doublon') {
+    // Traitement réponse
+    if (rep.status === 'doublon') {
       document.getElementById('f_ref').classList.add('invalid');
       showStatus('doublon',
         `⛔ Transaction non valide — Référence en doublon\n\n` +
-        `La référence « ${esc(ref)} » a déjà été enregistrée dans le journal.\n` +
-        `Motif : chaque transaction doit avoir un numéro de référence unique ` +
-        `(N° chèque, ID MoMo ou reçu de caisse).\n\n` +
-        `✏️ Veuillez vérifier le numéro et corriger avant de soumettre à nouveau.`
+        `La référence « ${esc(ref)} » est déjà enregistrée dans Journal_Encaissements.\n` +
+        `Chaque transaction doit avoir un numéro de référence unique.\n\n` +
+        `✏️ Vérifiez le numéro et corrigez avant de soumettre à nouveau.`
       );
       return;
     }
-
-    if (reponseServeur.status === 'email_invalide') {
+    if (rep.status === 'email_invalide') {
       document.getElementById('f_caissier').classList.add('invalid');
-      showStatus('err', `⚠️ Adresse email invalide : ${reponseServeur.message}`);
+      showStatus('err', `⚠️ Adresse email invalide : ${rep.message}`);
+      return;
+    }
+    if (rep.status === 'error') {
+      showStatus('err', `❌ Erreur serveur : ${rep.error || 'Veuillez réessayer.'}`);
       return;
     }
 
-    if (reponseServeur.status === 'error') {
-      showStatus('err', `❌ Erreur serveur : ${reponseServeur.error || 'Veuillez réessayer.'}`);
-      return;
-    }
+    // ── Succès : afficher le récap des 3 colonnes ──────────────
+    document.getElementById('srTotal').textContent = fmt(total_transaction);
+    document.getElementById('srFrais').textContent =
+      frais_momo > 0 ? `− ${fmt(frais_momo)}` : '0 FCFA (non MoMo)';
+    document.getElementById('srNet').textContent   = fmt(versement_net_frais);
 
-    // ── Succès ───────────────────────────────────────────────────
-    if (mode === 'Mobile Money') {
-      document.getElementById('srTotal').textContent = fmt(total);
-      document.getElementById('srFrais').textContent = frais > 0 ? `- ${fmt(frais)}` : '0 FCFA (non inclus)';
-      document.getElementById('srNet').textContent   = fmt(net);
-      document.getElementById('successRecap').style.display = 'block';
-    } else {
-      document.getElementById('successRecap').style.display = 'none';
-    }
-
-    document.getElementById('vatForm').style.display = 'none';
+    document.getElementById('vatForm').style.display       = 'none';
     document.getElementById('successScreen').style.display = 'block';
 
   } catch (err) {
@@ -572,23 +797,24 @@ document.getElementById('vatForm').addEventListener('submit', async function(e) 
 });
 
 // ══════════════════════════════════════════════════════════════════
-//  POST-VALIDATION
+//  RÉINITIALISATION ET UTILITAIRES
 // ══════════════════════════════════════════════════════════════════
 function nouveauFormulaire() {
   document.getElementById('vatForm').reset();
-  document.getElementById('soldeBox').style.display = 'none';
+  document.getElementById('soldeBox').style.display   = 'none';
+  document.getElementById('netBox').style.display     = 'none';
   document.getElementById('momoPanel').classList.remove('visible');
-  document.getElementById('momoRecap').style.display = 'none';
+  document.getElementById('momoTable').style.display  = 'none';
+  document.getElementById('momoNote').style.display   = 'none';
   document.getElementById('f_frais').value = 0;
   document.getElementById('f_net').value   = 0;
-  document.getElementById('f_caissier').classList.remove('valid','invalid');
-  document.getElementById('statusMsg').style.display = 'none';
-  document.getElementById('btnOui').className = 'toggle-btn';
-  document.getElementById('btnNon').className = 'toggle-btn';
+  document.getElementById('f_caissier').classList.remove('valid', 'invalid');
+  document.getElementById('statusMsg').style.display  = 'none';
+  resetMomoBtns();
   fraisInclus = null;
   document.getElementById('f_date').valueAsDate = new Date();
   document.getElementById('successScreen').style.display = 'none';
-  document.getElementById('vatForm').style.display = 'block';
+  document.getElementById('vatForm').style.display       = 'block';
 }
 
 function fermerPage() {
@@ -605,24 +831,22 @@ function fermerPage() {
   }, 300);
 }
 
-// ══════════════════════════════════════════════════════════════════
-//  UTILITAIRES
-// ══════════════════════════════════════════════════════════════════
 function showStatus(type, text) {
   const el = document.getElementById('statusMsg');
-  el.className = `status ${type}`;
+  el.className     = `status ${type}`;
   el.style.whiteSpace = 'pre-line';
-  el.textContent = text;
+  el.textContent   = text;
   el.style.display = 'block';
   el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// Nettoyage XSS
 function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-// Init
+// ── Init ──────────────────────────────────────────────────────────
 chargerClients();
 document.getElementById('f_date').valueAsDate = new Date();
 </script>
